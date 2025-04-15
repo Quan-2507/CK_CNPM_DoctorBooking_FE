@@ -1,0 +1,81 @@
+import React from "react";
+import './style.css';
+import axios from "axios";
+
+const SignIn = () => {
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
+    const validateLogin = () => {
+        if (!email || !password) {
+            alert('Vui lòng điền đầy đủ thông tin của bạn');
+            return false;
+        } else {
+            return true;
+        }
+    };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if(validateLogin()){
+                try {
+                    const response = await axios.post("http://localhost:8081/api/auth/login", {
+                        email,
+                        password,
+                    });
+                    // Lưu JWT Token vào LocalStorage hoặc Context
+                    localStorage.setItem("token", response.data.token);
+
+                    alert("Đăng nhập thành công!");
+                    console.log(response.data.token);
+                    return response.data;
+                } catch (error) {
+                    console.error("Lỗi đăng nhập:", error.response ? error.response.data : error.message);
+                }
+        }
+    }
+
+    return (
+        <>
+            <div className="container">
+                <div className="form-container">
+                    <h2>Đăng nhập</h2>
+                    <form
+                        onSubmit={handleSubmit}
+                    >
+                        <h4><span style={{color: "red", display: "none"}}>Email đã tồn tại</span></h4>
+                        <input
+                            type="text"
+                            name="email"
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+
+                            required
+                        />
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Mật khẩu"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                        <button
+                            type="submit"
+                        >
+                            Đăng nhập
+                        </button>
+                        <div style={{textAlign:"right",marginTop:"5px"}}><a style={{marginTop: "3px", textDecoration: "none"}} href="#">Quên
+                            mật khẩu</a></div>
+                        <div style={{display: "flex", justifyContent: "center"}}><span
+                            style={{padding: "5px", fontWeight: "500",fontSize:"medium"}}>Chưa có tài khoản</span><a
+                            style={{marginTop: "5px"}} href="#">Đăng ký</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </>
+    );
+};
+
+export default SignIn;

@@ -1,0 +1,52 @@
+.doctor-card {
+    border: 1px solid #e0e0e0; /* Đường viền nhẹ */
+    border-radius: 10px; /* Bo góc */
+    overflow: hidden; /* Ẩn phần thừa */
+    max-width: 250px; /* Chiều rộng tối đa */
+    text-align: center; /* Căn giữa nội dung */
+    background-color: #f8f9fa; /* Màu nền nhẹ */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+    margin: 20px; /* Khoảng cách xung quanh */
+    position: relative; /* Để định vị các phần tử con */
+    transition: background-color 0.3s; /* Hiệu ứng chuyển đổi màu nền */
+}
+
+.doctor-image {
+    width: 100%; /* Chiều rộng đầy đủ */
+    height: auto; /* Tự động chiều cao */
+}
+
+.doctor-name {
+    font-size: 20px; /* Kích thước chữ cho tên bác sĩ */
+    margin: 10px 0; /* Khoảng cách trên và dưới */
+    font-weight: bold; /* In đậm chữ */
+}
+
+.doctor-department {
+    color: #6c757d; /* Màu chữ nhạt hơn cho chuyên khoa */
+    margin: 5px 0; /* Khoảng cách trên và dưới */
+}
+
+.social-icons {
+    display: none; /* Ẩn các biểu tượng mạng xã hội mặc định */
+    margin-top: 10px; /* Khoảng cách trên cho biểu tượng */
+}
+
+.doctor-card:hover {
+    background-color: #e9ecef; /* Màu nền khi hover */
+}
+
+.doctor-card:hover .social-icons {
+    display: flex; /* Hiển thị các biểu tượng mạng xã hội khi hover */
+    justify-content: center; /* Căn giữa */
+}
+
+.social-icon {
+    margin: 0 10px; /* Khoảng cách giữa các biểu tượng */
+    color: #007bff; /* Màu chữ cho biểu tượng */
+    text-decoration: none; /* Bỏ gạch chân */
+}
+
+.social-icon:hover {
+    text-decoration: underline; /* Gạch chân khi hover */
+}

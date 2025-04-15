@@ -1,0 +1,66 @@
+.doctor-detail {
+    max-width: 800px; /* Chiều rộng tối đa */
+    margin: 20px auto; /* Căn giữa */
+    border: 1px solid #e0e0e0; /* Đường viền nhẹ */
+    border-radius: 10px; /* Bo góc */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+    background-color: #ffffff; /* Màu nền trắng */
+    text-align: left;
+}
+
+.doctor-header {
+    display: flex; /* Sử dụng flexbox để căn giữa */
+    padding: 20px; /* Khoảng cách bên trong */
+}
+
+.doctor-image {
+    width: 150px; /* Chiều rộng hình ảnh */
+    height: 150px; /* Chiều cao hình ảnh */
+    border-radius: 50%; /* Bo tròn hình ảnh */
+    margin-right: 20px; /* Khoảng cách bên phải */
+}
+
+.doctor-info {
+    flex: 1; /* Cho phép chiếm toàn bộ chiều rộng còn lại */
+    margin: auto 25px;
+}
+
+.doctor-name {
+    font-size: 24px; /* Kích thước chữ cho tên bác sĩ */
+    margin: 0; /* Bỏ margin */
+    font-weight: bold; /* In đậm chữ */
+}
+
+.doctor-specialty {
+    color: #6c757d; /* Màu chữ nhạt hơn cho chuyên khoa */
+    margin: 5px 0; /* Khoảng cách trên và dưới */
+}
+
+.doctor-experience {
+    margin: 5px 0; /* Khoảng cách trên và dưới */
+}
+
+.book-appointment {
+    width: 80%;
+    background-color: #007bff; /* Màu nền cho nút */
+    color: white; /* Màu chữ trắng */
+    border: none; /* Bỏ viền */
+    padding: 15px 15px; /* Khoảng cách bên trong */
+    border-radius: 5px; /* Bo góc */
+    cursor: pointer; /* Con trỏ chuột khi hover */
+    font-size: 16px; /* Kích thước chữ */
+    margin-right: 10px;
+}
+
+.book-appointment:hover {
+    background-color: #0056b3; /* Màu nền khi hover */
+}
+
+.doctor-description {
+    padding: 20px; /* Khoảng cách bên trong */
+    border-top: 1px solid #e0e0e0; /* Đường viền trên */
+}
+
+.doctor-description h3 {
+    margin-top: 0; /* Bỏ margin trên */
+}
