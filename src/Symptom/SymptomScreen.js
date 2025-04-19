@@ -1,0 +1,152 @@
+import React from "react";
+import {useNavigate} from "react-router-dom";
+import './style.css';
+import {useState} from 'react';
+
+const SymptomScreen = () => {
+    // const navigate = useNavigate();
+    const symptoms = [{name: 'Sốt', department: 'khoa nội'}, {name: 'ho', department: 'khoa ngoại'}, {
+        name: 'Sổ mũi',
+        department: 'khoa ngoại'
+    }, {name: 'Đau đầu', department: 'khoa ngoại'}, {name: 'Mệt mỏi', department: 'khoa ngoại'}];
+    // const symptoms =[];
+    const [selectedSymptoms, setSelectedSymptoms] = useState([]);
+
+    const handleSelectSymptom = (symptom) => {
+        // Kiểm tra xem triệu chứng đã được chọn chưa
+        const isAlreadySelected = selectedSymptoms.some(
+            (selected) => selected.name === symptom.name
+        );
+
+        if (!isAlreadySelected) {
+            // Nếu chưa tồn tại, thêm vào danh sách
+            setSelectedSymptoms([...selectedSymptoms, symptom]);
+        }
+    };
+    const handleRemoveSymptom = (symptom) => {
+        setSelectedSymptoms(selectedSymptoms.filter((item) => item !== symptom));
+    };
+    // State để lưu giá trị của input
+    const [searchTerm, setSearchTerm] = useState('');
+
+    // Hàm xử lý khi người dùng nhập vào input
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+    };
+
+    // Lọc danh sách triệu chứng dựa trên giá trị tìm kiếm
+    const filteredSymptoms = symptoms.filter((symptom) =>
+        symptom.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    const handleContinue = () => {
+        if (selectedSymptoms.length === 0) {
+            alert('Vui lòng chọn ít nhất một triệu chứng trước khi tiếp tục!');
+            return;
+        }
+
+        // In danh sách triệu chứng đã chọn ra console (có thể thay bằng gọi API)
+        console.log('Danh sách triệu chứng đã chọn:', selectedSymptoms);
+
+        // Ví dụ: Gửi danh sách triệu chứng lên server (giả lập)
+        // fetch('https://your-api-endpoint', {
+        //   method: 'POST',
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //   },
+        //   body: JSON.stringify(selectedSymptoms),
+        // })
+        //   .then((response) => response.json())
+        //   .then((data) => {
+        //     console.log('Gửi thành công:', data);
+        //   })
+        //   .catch((error) => {
+        //     console.error('Lỗi khi gửi:', error);
+        //   });
+
+        // Có thể reset danh sách sau khi gửi (tuỳ chọn)
+        // setSelectedSymptoms([]);
+    };
+    return (
+        <>
+
+            <div className="search-container">
+                <input
+                    type="text"
+                    className="search-input"
+                    placeholder="Tìm kiếm triệu chứng..."
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                />
+            </div>
+            <div className="container">
+                <div className="column-left">
+                    <h3 className="header">Danh sách triệu chứng</h3>
+                </div>
+                <div className="column-right">
+                    <h3 className="header">Danh sách triệu chứng đã chọn</h3>
+                </div>
+            </div>
+            <div className="container">
+            {/* Cột bên trái */}
+                    <div className="column-left">
+                        <div className="symptom-list">
+                            {searchTerm === '' ? (
+                                symptoms.length > 0 ? (
+                                    symptoms.map((symptom, index) => (
+                                        <div
+                                            key={index}
+                                            className="symptom-item"
+                                            onClick={() => handleSelectSymptom(symptom)}
+                                        >
+                                            <h2 className="symptom-name">{symptom.name}</h2>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <p className="no-data">Không có dữ liệu</p>
+                                )
+                            ) : (
+                                filteredSymptoms.length > 0 ? (
+                                    filteredSymptoms.map((symptom, index) => (
+                                        <div
+                                            key={index}
+                                            className="symptom-item"
+                                            onClick={() => handleSelectSymptom(symptom)}
+                                        >
+                                            <h2 className="symptom-name">{symptom.name}</h2>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <p className="no-data">Không tìm thấy triệu chứng</p>
+                                )
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Cột bên phải */}
+                    <div className="column-right">
+                        <div className="symptom-list">
+                            {selectedSymptoms.length > 0 ? (
+                                selectedSymptoms.map((symptom, index) => (
+                                    <div
+                                        key={index}
+                                        className="symptom-item"
+                                        onClick={() => handleRemoveSymptom(symptom)}
+                                    >
+                                        <h2 className="symptom-name">{symptom.name}</h2>
+                                    </div>
+                                ))
+                            ) : (
+                                <p className="no-data">Chưa có triệu chứng nào được chọn</p>
+                            )}
+                        </div>
+                    </div>
+                </div>
+
+                <div className="button-container">
+                    <button className="continue-btn" onClick={handleContinue}>Tiếp tục</button>
+                </div>
+            </>
+            );
+            };
+
+            export default SymptomScreen;

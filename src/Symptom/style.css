@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h3 {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    width: 100%;
+}
+
+.search-input {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+.search-input::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    padding: 5px;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: auto;
+}
+
+.column-left,
+.column-right {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+}
+.header {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.symptom-list {
+    flex-grow: 1; /* Đảm bảo danh sách chiếm không gian còn lại */
+}
+.symptom-item {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+    max-width: 500px; /* Chuyển từ inline style sang đây */
+}
+.no-data {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    width: 100%;
+    max-width: 500px;
+}
+.symptom-item:hover {
+    background-color: #f0f0f0;
+}
+
+.symptom-item.selected {
+    background-color: #e0f7fa;
+    border-color: #007bff;
+}
+
+.symptom-item.selected:hover {
+    background-color: #b3e5fc;
+}
+
+.symptom-name {
+    font-size: 18px;
+    color: #333;
+}
+
+.fa-align-left p,
+.fa-align-right p {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+}
+.button-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    width: 96%;
+}
+
+.continue-btn {
+    max-width: 20%;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.continue-btn:hover {
+    background-color: #0056b3;
+}
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .fa-align-left,
+    .fa-align-right {
+        width: 100%;
+    }
+
+    .symptom-item {
+        width: 100%; /* Điều chỉnh width trên màn hình nhỏ */
+    }
+}
