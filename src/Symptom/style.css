@@ -113,7 +113,7 @@ h3 {
 }
 
 .continue-btn {
-    max-width: 20%;
+    max-width: 10%;
     padding: 10px 20px;
     font-size: 16px;
     background-color: #007bff;
@@ -123,7 +123,21 @@ h3 {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-
+.pass-btn {
+    max-width: 10%;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: white !important;
+    color: red;
+    border: red 1px solid;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.symptom-item.selected {
+    /*background-color: ;*/
+    color: white;
+}
 .continue-btn:hover {
     background-color: #0056b3;
 }
