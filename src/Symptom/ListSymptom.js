@@ -8,7 +8,7 @@ const ListSymptom = ({ onSelectDepartment }) => {
     const [selectedDepartment, setSelectedDepartment] = useState(null);
 
     useEffect(() => {
-        axios.get('http://localhost:8081/api/departments/symptoms')
+        axios.get('${API_BASE_URL}/symptoms')
             .then(response => {
                 setDepartments(response.data);
                 setLoading(false);

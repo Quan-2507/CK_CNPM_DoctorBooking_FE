@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
-import './style.css';
+import './Symptom.module.css';
 import {useState} from 'react';
 import axios from "axios";
 
@@ -17,7 +17,7 @@ const SymptomScreen = () => {
     // const [selectedDepartment, setSelectedDepartment] = useState(null);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/departments/symptoms')
+        axios.get('${API_BASE_URL}/symptoms')
             .then(response => {
                 setDepartments(response.data);
                 setLoading(false);
