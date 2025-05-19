@@ -1,36 +1,46 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Navbar = () => {
-    return (
-        <nav className="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
-            <Link to="/" className="navbar-brand d-flex align-items-center px-4 px-lg-5">
-                <h1 className="m-0 text-primary"><i className="far fa-hospital me-3"></i>Klinik</h1>
-            </Link>
-            <button type="button" className="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarCollapse">
-                <div className="navbar-nav ms-auto p-4 p-lg-0">
-                    <Link to="/" className="nav-item nav-link">Home</Link>
-                    <Link to="/about" className="nav-item nav-link">About</Link>
-                    <Link to="/services" className="nav-item nav-link">Services</Link>
-                    <div className="nav-item dropdown">
-                        <a href="#" className="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Pages</a>
-                        <div className="dropdown-menu rounded-0 rounded-bottom m-0">
-                            <Link to="/feature" className="dropdown-item">Feature</Link>
-                            <Link to="/team" className="dropdown-item">Our Doctor</Link>
-                            <Link to="/appointment" className="dropdown-item">Appointment</Link>
-                            <Link to="/testimonial" className="dropdown-item">Testimonial</Link>
-                            <Link to="/404" className="dropdown-item active">404 Page</Link>
-                        </div>
+const Navbar = () => (
+    <nav className="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+        <a href="/public" className="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h1 className="m-0 text-primary">
+                <i className="far fa-hospital me-3"></i>Klinik
+            </h1>
+        </a>
+        <button
+            type="button"
+            className="navbar-toggler me-4"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarCollapse">
+            <div className="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="/public" className="nav-item nav-link active">Home</a>
+                <a href="/about" className="nav-item nav-link">About</a>
+                <a href="/service" className="nav-item nav-link">Service</a>
+                <div className="nav-item dropdown">
+                    <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                    <div className="dropdown-menu rounded-0 rounded-bottom m-0">
+                        <a href="/feature" className="dropdown-item">Feature</a>
+                        <a href="/team" className="dropdown-item">Our Doctor</a>
+                        <a href="/appointment" className="dropdown-item">Appointment</a>
+                        <a href="/testimonial" className="dropdown-item">Testimonial</a>
                     </div>
-                    <Link to="/contact" className="nav-item nav-link">Contact</Link>
                 </div>
-                <Link to="/appointment" className="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Appointment<i className="fa fa-arrow-right ms-3"></i></Link>
+                <a href="/contact" className="nav-item nav-link">Contact</a>
             </div>
-        </nav>
-    );
-};
+            <a href="/appointment" className="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">
+                Appointment<i className="fa fa-arrow-right ms-3"></i>
+            </a>
+        </div>
+    </nav>
+);
 
 export default Navbar;

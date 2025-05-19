@@ -11,7 +11,7 @@ const ListDoctor = ({ selectedDepartment }) => {
     const navigate = useNavigate(); // Hook để điều hướng
 
     useEffect(() => {
-        axios.get('http://localhost:8081/api/doctors')
+        axios.get('${API_BASE_URL}/doctors')
             .then(response => {
                 setDoctors(response.data);
                 setLoading(false);

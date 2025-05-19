@@ -1,38 +1,25 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./Component/Header";
-import Navbar from "./Component/Navbar";
-import Footer from "./Component/Footer";
-import Home from "./Pages/Home";
-// import About from "./pages/About";
-// import Services from "./pages/Services";
-// import Contact from "./pages/Contact";
-// import Appointment from "./pages/Appointment";
-// import Testimonial from "./pages/Testimonial";
-// import Team from "./pages/Team";
-// import Feature from "./pages/Feature";
-import NotFound from "./Pages/NotFound";
-import ListSymptom from "./Symptom/ListSymptom";
-import "./App.css";
-import Content from "./Pages/Content";
-import Test from "./Doctor/Doctor";
-import ListDoctor from "./Doctor/ListDoctor";
-import SignUp from "./SignUp/SignUpScreen";
-import SignIn from "./SignIn/SignIn";
-import Confirm from "./SignUp/ConfirmScreen";
-import DoctorDetail from "./Detail/DoctorDetail";
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import Home from './Pages/Home';
 import Appointment from "./Pages/Appointment";
+
+import './assets/css/bootstrap.min.css';
+import './assets/css/style.css';
+import './assets/lib/animate/animate.min.css';
+import './assets/lib/owlcarousel/assets/owl.carousel.min.css';
+import './assets/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css';
 import SymptomScreen from "./Symptom/SymptomScreen";
 
 function App() {
     return (
         <Router>
-            <Header />
-
+            {/*<Navbar />*/}
             <Routes>
-                {/*<Route path="/" element={<Content />} />*/}
-                {/*<Route path="/doctors/:id" element={<Appointment />} />*/}
-                {/*<Route path="/home" element={<SymptomScreen />} />*/}
+                <Route path="/" element={<Home />} />
+                <Route path="/doctors/:id" element={<Appointment />} />
                 {/*<Route path="/services" element={<Services />} />*/}
                 {/*<Route path="/contact" element={<Contact />} />*/}
                 {/*<Route path="/appointment" element={<Appointment />} />*/}
@@ -40,10 +27,8 @@ function App() {
                 {/*<Route path="/team" element={<Team />} />*/}
                 {/*<Route path="/feature" element={<Feature />} />*/}
                 {/*<Route path="*" element={<NotFound />} />*/}
-                {/* <Route path="/signIn" element={<SignIn />} />*/}
-                 <Route path="/" element={<SymptomScreen />} />
+                <Route path="/symptoms" element={<SymptomScreen />} />
             </Routes>
-            <Footer />
 
 
         </Router>

@@ -1,52 +1,38 @@
 import React from 'react';
-import './HomeStyle.css'; // Import CSS
-import img from "../img/feature.jpg";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserMd, faCheck, faCommentMedical, faHeadphones } from '@fortawesome/free-solid-svg-icons';
-import Content from "./Content";
+import Spinner from '../Home/Spinner';
+import Topbar from '../Home/Topbar';
+import Navbar from '../Component/Navbar';
+import Header from '../Component/Header';
+import About from '../Home/About';
+import Services from '../Home/Services';
+import Features from '../Home/Features';
+import Team from '../Home/Team';
+import Testimonial from '../Home/Testimonial';
+import Footer from '../Component/Footer';
+import BackToTop from '../Home/BackToTop';
+
+import '../assets/css/bootstrap.min.css';
+import '../assets/css/style.css';
+import '../assets/lib/animate/animate.min.css';
+import '../assets/lib/owlcarousel/assets/owl.carousel.min.css';
+import '../assets/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css';
 
 const Home = () => {
     return (
-        <div>
-        <div className="feature-container">
-            <div className="feature-content">
-                <div className="feature-text">
-                    <p className="feature-title">Đặt lịch</p>
-                    <h1>Tại sao chọn chúng tôi</h1>
-                    <p>
-                        Chúng tôi cam kết cung cấp dịch vụ chăm sóc sức khỏe tốt nhất cho cộng đồng.
-                        Đội ngũ bác sĩ và nhân viên của chúng tôi luôn sẵn sàng lắng nghe
-                        và đáp ứng nhu cầu của bệnh nhân với sự tận tâm và chuyên nghiệp.
-                        Chúng tôi tin rằng mỗi bệnh nhân đều xứng đáng nhận được sự chăm sóc tận tình và hiệu quả,
-                        giúp họ nhanh chóng hồi phục và nâng cao chất lượng cuộc sống.
-                    </p>
-                    <div className="feature-items">
-                        <FeatureItem icon={faUserMd} title="Bác Sĩ" subtitle="Kinh Nghiệm" />
-                        <FeatureItem icon={faCheck} title="Dịch Vụ" subtitle="Chất Lượng" />
-                        <FeatureItem icon={faCommentMedical} title="Tư Vấn" subtitle="Tích Cực" />
-                        <FeatureItem icon={faHeadphones} title="Hỗ Trợ" subtitle="24 Giờ" />
-                    </div>
-                </div>
-            </div>
-            <div className="feature-image">
-                <img src={img} alt="Feature" />
-            </div>
-        </div>
-            <Content/>
-        </div>
+        <>
+            {/*<Spinner />*/}
+            <Topbar />
+            <Navbar />
+            <Header />
+            <About />
+            <Services />
+            <Features />
+            <Team />
+            <Testimonial />
+            <Footer />
+            <BackToTop />
+        </>
     );
 };
-
-const FeatureItem = ({ icon, title, subtitle }) => (
-    <div className="feature-item">
-        <div className="icon-container">
-            <FontAwesomeIcon icon={icon} />
-        </div>
-        <div className="feature-item-text">
-            <div>{subtitle}</div>
-            <div>{title}</div>
-        </div>
-    </div>
-);
 
 export default Home;
