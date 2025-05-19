@@ -22,16 +22,17 @@ import SignIn from "./SignIn/SignIn";
 import Confirm from "./SignUp/ConfirmScreen";
 import DoctorDetail from "./Detail/DoctorDetail";
 import Appointment from "./Pages/Appointment";
+import SymptomScreen from "./Symptom/SymptomScreen";
 
 function App() {
     return (
         <Router>
             <Header />
-            {/*<Navbar />*/}
+
             <Routes>
-                <Route path="/" element={<Content />} />
-                <Route path="/doctors/:id" element={<Appointment />} />
-                <Route path="/home" element={<Home />} />
+                {/*<Route path="/" element={<Content />} />*/}
+                {/*<Route path="/doctors/:id" element={<Appointment />} />*/}
+                {/*<Route path="/home" element={<SymptomScreen />} />*/}
                 {/*<Route path="/services" element={<Services />} />*/}
                 {/*<Route path="/contact" element={<Contact />} />*/}
                 {/*<Route path="/appointment" element={<Appointment />} />*/}
@@ -39,12 +40,11 @@ function App() {
                 {/*<Route path="/team" element={<Team />} />*/}
                 {/*<Route path="/feature" element={<Feature />} />*/}
                 {/*<Route path="*" element={<NotFound />} />*/}
-                 <Route path="/signIn" element={<SignIn />} />
-            {/*</Routes>*/}
-            <Footer />
-                {/*<SignIn />*/}
+                {/* <Route path="/signIn" element={<SignIn />} />*/}
+                 <Route path="/" element={<SymptomScreen />} />
             </Routes>
-            {/*<Footer />*/}
+            <Footer />
+
 
         </Router>
 
