@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { Link } from 'react-router-dom';
 const Navbar = () => (
     <nav className="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="/public" className="navbar-brand d-flex align-items-center px-4 px-lg-5">
@@ -35,6 +35,7 @@ const Navbar = () => (
                     </div>
                 </div>
                 <a href="/contact" className="nav-item nav-link">Contact</a>
+                <Link className="nav-item nav-link" to="/profile">Profile</Link>
             </div>
             <a href="/appointment" className="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">
                 Appointment<i className="fa fa-arrow-right ms-3"></i>

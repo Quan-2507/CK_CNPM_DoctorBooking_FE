@@ -48,9 +48,16 @@ h3 {
     height: auto;
 }
 
-.column-left,
+.column-left{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
 .column-right {
-    width: 48%;
+    width: 40%;
     display: flex;
     flex-direction: column;
 }
@@ -61,19 +68,30 @@ h3 {
     margin-bottom: 20px;
 }
 .symptom-list {
-    flex-grow: 1; /* Đảm bảo danh sách chiếm không gian còn lại */
+    width: 100%;
+    margin: 5px;
+    display: grid; /* Sử dụng CSS Grid */
+    grid-template-columns: repeat(1, 1fr); /* Chia thành 3 cột đều nhau */
+    gap: 10px; /* Khoảng cách giữa các cột */
+    border: 1px solid #ccc;
+    padding: 10px;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center;
+    max-height: 400px; /* Giới hạn chiều cao */
+    overflow-y: auto; /* Thêm thanh cuộn dọc */
 }
 .symptom-item {
-    margin-bottom: 20px;
+    width: 100%;
+    margin:0;
     border: 1px solid #ccc;
     padding: 10px;
     border-radius: 5px;
     background-color: #fff;
     transition: background-color 0.3s ease;
     cursor: pointer;
-    width: 100%;
-    max-width: 500px; /* Chuyển từ inline style sang đây */
+    /*max-width: 500px; !* Chuyển từ inline style sang đây *!*/
 }
+
 .no-data {
     text-align: center;
     color: #666;
@@ -95,8 +113,11 @@ h3 {
 }
 
 .symptom-name {
+    width: fit-content; /* Chiều rộng vừa đủ với nội dung */
+    display: block; /* Đảm bảo h2 là block element */
     font-size: 18px;
     color: #333;
+    margin: 0 auto; /* Căn giữa theo chiều ngang */
 }
 
 .fa-align-left p,
@@ -122,8 +143,11 @@ h3 {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin: 5px;
+
 }
 .pass-btn {
+    margin: 5px;
     max-width: 10%;
     padding: 10px 20px;
     font-size: 16px;
