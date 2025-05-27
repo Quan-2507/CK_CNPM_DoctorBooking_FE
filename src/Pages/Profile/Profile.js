@@ -115,7 +115,7 @@ function Profile() {
                                     name="email"
                                     className="form-input right-input"
                                     placeholder="Enter your email"
-                                    // value={formDetails.email}
+                                    value={user?.email}
                                     // onChange={inputChange}
                                 />
                             </div>
@@ -126,7 +126,7 @@ function Profile() {
                                     name="mobile"
                                     className="form-input right-input"
                                     placeholder="Enter your mobile number"
-                                    // value={formDetails?.mobile}
+                                    value={user?.phoneNumber}
                                     // onChange={inputChange}
                                 />
                             </div>
@@ -137,7 +137,7 @@ function Profile() {
                                     name="mobile"
                                     className="form-input right-input"
                                     placeholder="Enter your mobile number"
-                                    // value={formDetails?.mobile}
+                                    value={user?.address}
                                     // onChange={inputChange}
                                 />
                             </div>
@@ -148,7 +148,7 @@ function Profile() {
                                     name="mobile"
                                     className="form-input right-input"
                                     placeholder="Enter your mobile number"
-                                    // value={formDetails?.mobile}
+                                    value={user?.dateOfBirth}
                                     // onChange={inputChange}
                                 />
                             </div>

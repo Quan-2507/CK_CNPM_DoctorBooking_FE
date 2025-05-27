@@ -35,9 +35,8 @@ const Navbar = () => (
                     </div>
                 </div>
                 <a href="/contact" className="nav-item nav-link">Contact</a>
-                <Link className="nav-item nav-link" to="/profile">Profile</Link>
             </div>
-            <a href="/appointment" className="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">
+            <a href="/appointment" style={{zIndex:50}} className="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">
                 Appointment<i className="fa fa-arrow-right ms-3"></i>
             </a>
         </div>
