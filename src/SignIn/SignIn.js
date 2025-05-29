@@ -67,7 +67,7 @@ const SignIn = () => {
     }
     return (
         <>
-            <div className="container">
+            <div className="container-sign-in">
                 <div className="form-container">
                     <h2>Đăng nhập</h2>
                     <form
@@ -75,7 +75,7 @@ const SignIn = () => {
                     >
                         <h4><span style={{color: "red", display: "none"}}>Email đã tồn tại</span></h4>
                         <input
-                            className={"input-signin"}
+                            className={"input-signin-process"}
                             type="text"
                             name="email"
                             placeholder="Email"
@@ -85,7 +85,7 @@ const SignIn = () => {
                             required
                         />
                         <input
-                            className={"input-signin"}
+                            className={"input-signin-process "}
                             type="password"
                             name="password"
                             placeholder="Mật khẩu"
