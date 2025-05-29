@@ -6,12 +6,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from '../../Redux/Store/Store';
 
 import jwt_decode from "jwt-decode";
+import Topbar from "../../Home/Topbar";
+import Navbar from "../../Component/Navbar";
+import Footer from "../../Component/Footer";
 
 
 function Profile() {
     const dispatch = useDispatch();
     const [file, setFile] = useState("");
-    const user = useSelector((state: RootState) => state.user);
+    const [user, setUser] = React.useState('');
+    // const user = useSelector((state: RootState) => state.user);
+    useEffect(() => {
+        const storedUser = sessionStorage.getItem("user");
+        if (storedUser) {
+            try {
+                const parsedUser = JSON.parse(storedUser);
+                dispatch(setUser(parsedUser));
+            } catch (error) {
+                console.error("Error parsing user from sessionStorage:", error);
+            }
+        }
+    }, [dispatch]);
     console.log("username",user?.email);
 
 
@@ -85,6 +100,8 @@ function Profile() {
 
     return (
         <>
+            <Topbar />
+            <Navbar/>
                 <section className="register-section">
                     <div className="profile-container flex-center">
                         <h2 className="form-heading">Profile</h2>
@@ -161,6 +178,7 @@ function Profile() {
                         </form>
                     </div>
                 </section>
+            <Footer/>
         </>
     );
 }

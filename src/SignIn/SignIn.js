@@ -43,6 +43,7 @@ const SignIn = () => {
                         const user = response.data;
                         if (user) {
                             console.log("user", user)
+                            sessionStorage.setItem("user", JSON.stringify(user));
                             dispatch(setUser(user));
                             if (role === "ROLE_ADMIN") {
                                 navigation("/admin")
@@ -59,14 +60,11 @@ const SignIn = () => {
                     });
                 }
                 // alert("Đăng nhập thành công!");
-
-
             } catch (error) {
                 console.error("Lỗi đăng nhập:", error.response ? error.response.data : error.message);
             }
         }
     }
-
     return (
         <>
             <div className="container">
@@ -110,7 +108,6 @@ const SignIn = () => {
                     </form>
                 </div>
             </div>
-
         </>
     );
 };

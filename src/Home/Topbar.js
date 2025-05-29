@@ -1,23 +1,24 @@
 import React from 'react';
 import  { useEffect, useState } from 'react';
 import './style.topbar.css';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faUser} from "@fortawesome/free-solid-svg-icons/faUser";
 const Topbar = () => {
-    // const [userData, setUserData] = useState(null);
-    // useEffect(() => {
-    //     // Lấy dữ liệu từ sessionStorage với key là 'user'
-    //     const storedData = sessionStorage.getItem('user');
-    //
-    //     // Kiểm tra nếu dữ liệu tồn tại
-    //     if (storedData) {
-    //         // Parse dữ liệu nếu nó là JSON
-    //         setUserData(JSON.parse(storedData));
-    //     } else {
-    //         console.log('Không tìm thấy dữ liệu trong sessionStorage');
-    //     }
-    // }, []);
-    const userData = {
-        fullname:"Det dep trai"
-    }
+    const [userData, setUserData] = useState(null);
+    useEffect(() => {
+        // Lấy dữ liệu từ sessionStorage với key là 'user'
+        const storedData = sessionStorage.getItem('user');
+
+        // Kiểm tra nếu dữ liệu tồn tại
+        if (storedData) {
+            // Parse dữ liệu nếu nó là JSON
+            setUserData(JSON.parse(storedData));
+        } else {
+            console.log('Không tìm thấy dữ liệu trong sessionStorage');
+        }
+    }, []);
+    console.log("user", userData)
+    // const userData = {fullname:"dang thanh sang"};
     const handleLogout = () => {
         // Xóa dữ liệu user trong sessionStorage (giả lập đăng xuất)
         sessionStorage.removeItem('user');
@@ -40,13 +41,16 @@ const Topbar = () => {
                         </div>
                     </div>
                     <div className="col-lg-5 px-5 text-end">
-                        {userData ? (
+                        {userData?.username ? (
                             <div className="h-100 d-inline-flex align-items-center py-3 me-4"
                             >
                                 <div className="nav-item dropdown">
-                                    <a href="#" className="nav-link dropdown-toggle" style={{ position: 'relative', zIndex: 1000 }} >{userData.fullname}</a>
-                                    <div className="dropdown-menu rounded-0 rounded-bottom m-0" style={{zIndex:3000}}>
-                                        <div className="dropdown-item" style={{color:"red", fontStyle:"italic"}} onClick={handleLogout}>Đăng xuất</div>
+                                    <a href="/profile" className="nav-link dropdown-toggle"
+                                       style={{position: 'relative', zIndex: 1000}}><FontAwesomeIcon icon={faUser}/> {userData?.username}</a>
+                                    <div className="dropdown-menu rounded-0 rounded-bottom m-0" style={{zIndex: 3000}}>
+                                        <div className="dropdown-item" style={{color: "red", fontStyle: "italic"}}
+                                             onClick={handleLogout}>Đăng xuất
+                                        </div>
                                     </div>
                                 </div>
                             </div>
