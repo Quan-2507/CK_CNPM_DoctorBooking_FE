@@ -12,6 +12,8 @@ const AppointmentContainer = () => {
     const [schedules, setSchedules] = useState({});
     const [slotIndex, setSlotIndex] = useState(0);
     const [slotTime, setSlotTime] = useState('');
+    const [selectedSlotId, setSelectedSlotId] = useState(null);
+
 
     const fetchDocInfo = async () => {
         try {
@@ -46,6 +48,45 @@ const AppointmentContainer = () => {
             console.error("Error fetching doctor schedules:", error);
         }
     };
+
+    const handleBooking = async () => {
+        const userId = parseInt(sessionStorage.getItem("userId"), 10);
+        const token = localStorage.getItem("token"); // Lấy token
+        console.log("userId:", userId);
+        console.log("userId:", sessionStorage.getItem("userId"));
+        const now = new Date();
+        const vietnamTime = new Date(now.getTime() + 7 * 60 * 60 * 1000); // Cộng thêm 7 tiếng
+        const appointmentTime = vietnamTime.toISOString();
+
+
+        if (!userId || selectedSlotId==null) {
+            alert("Please select a time slot.");
+            return;
+        }
+
+        const requestBody = {
+            userId,
+            doctorId: parseInt(docId, 10),
+            scheduleId: selectedSlotId,
+            appointmentTime
+        };
+
+        try {
+            const response = await axios.post('http://localhost:8080/api/bookings', requestBody, {
+                headers: {
+                    Authorization: `Bearer ${token}`  // Thêm token vào header
+                }
+            });
+            alert("Appointment booked successfully!");
+            // Optional: redirect or reset state
+        } catch (error) {
+            console.error("Booking failed:", error);
+            alert("Failed to book appointment.");
+        }
+    };
+
+
+
 
     useEffect(() => {
         fetchDocInfo();
@@ -108,16 +149,21 @@ const AppointmentContainer = () => {
                         const timeRange = `${slot.startTime.slice(0, 5)} - ${slot.endTime.slice(0, 5)}`;
                         return (
                             <p
-                                onClick={() => setSlotTime(timeRange)}
+                                onClick={() => {
+                                    console.log("Selected slot:", slot);
+                                    setSlotTime(timeRange);
+                                    setSelectedSlotId(slot.id); // Lưu scheduleId
+                                }}
                                 className={`book-time-1 ${slotTime === timeRange ? 'book-time-2' : 'book-time-3'}`}
                                 key={index}
                             >
                                 {timeRange}
                             </p>
+
                         );
                     })}
                 </div>
-                <button className='book-button'>
+                <button className='book-button' onClick={handleBooking}>
                     Book an appointment
                 </button>
             </div>

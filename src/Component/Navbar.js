@@ -6,7 +6,13 @@ const Navbar = () => (
     <nav className="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <Link to={"/"} className="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <h1 className="m-0 text-primary">
-                <i className="far fa-hospital me-3"></i>Klinik
+                {/*<i className="far fa-hospital me-3"></i>Klinik*/}
+                <img
+                    className="img-logo"
+                    style={{"width":"10%"}}
+                    src={`/assets/img/Blue_Logo.png`}
+
+                />
             </h1>
         </Link>
         <button

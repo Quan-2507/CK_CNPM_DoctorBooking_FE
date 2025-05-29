@@ -35,6 +35,8 @@ const SignIn = () => {
                 console.log(decodedToken);
                 const id = decodedToken.id;
                 const role = decodedToken.role;
+                sessionStorage.setItem("userId", id.toString());
+                console.log("Set userId to sessionStorage:", id.toString());
                 await localStorage.setItem("token", response.data.token);
                 if (token) {
                     axios.get(`${API_BASE_URL}/users/${id}`, {
