@@ -19,10 +19,10 @@ function App() {
             {/*<Navbar />*/}
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/doctors/:id" element={<Appointment />} />
+                <Route path="/appointment/:id" element={<Appointment />} />
                 {/*<Route path="/services" element={<Services />} />*/}
                 {/*<Route path="/contact" element={<Contact />} />*/}
-                {/*<Route path="/appointment" element={<Appointment />} />*/}
+                {/*<Route path="/appointment" element={<AppointmentContainer />} />*/}
                 {/*<Route path="/testimonial" element={<Testimonial />} />*/}
                 {/*<Route path="/team" element={<Team />} />*/}
                 {/*<Route path="/feature" element={<Feature />} />*/}
