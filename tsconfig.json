@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "esnext",
+    "jsx": "react-jsx",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true, // Cho phép biên dịch file JavaScript
+    "checkJs": false, // Không kiểm tra kiểu cho file JavaScript
+    "skipLibCheck": true,
+    "baseUrl": "src",
+    "resolveJsonModule": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}
