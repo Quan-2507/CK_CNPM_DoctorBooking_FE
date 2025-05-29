@@ -1,0 +1,164 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* gap-4 trong Tailwind tương ứng với 1rem = 16px */
+    padding-top: 10px;
+    padding-left: 200px;
+    padding-right: 200px;
+}
+
+@media (min-width: 640px) { /* sm: trong Tailwind tương ứng với breakpoint 640px */
+    .container {
+        flex-direction: row;
+    }
+}
+.doctor-image {
+    background-color: #3b82f6; /* bg-primary, giả sử primary là màu mặc định của Tailwind (blue-500) */
+    width: 100%;
+    max-width: none;
+    border-radius: 0.5rem; /* rounded-lg trong Tailwind tương ứng với 0.5rem */
+}
+
+@media (min-width: 640px) { /* sm: trong Tailwind tương ứng với breakpoint 640px */
+    .doctor-image {
+        max-width: 18rem; /* sm:max-w-72, 72 trong Tailwind tương ứng với 18rem (1 unit = 0.25rem) */
+    }
+}
+.doctor-infos {
+    flex: 1; /* flex-1: flex-grow: 1, flex-shrink: 1, flex-basis: 0% */
+    border: 1px solid #9ca3af; /* border-gray-400: màu xám của Tailwind */
+    border-radius: 0.5rem; /* rounded-lg: 0.5rem */
+    padding: 2rem; /* p-8: 2rem (8 * 0.25rem) */
+    padding-top: 1.75rem; /* py-7: 1.75rem (7 * 0.25rem), ghi đè padding-top */
+    padding-bottom: 1.75rem; /* py-7: 1.75rem, ghi đè padding-bottom */
+    background-color: #ffffff; /* bg-white */
+    margin-left: 0.5rem; /* mx-2: 0.5rem (2 * 0.25rem) */
+    margin-right: 0.5rem; /* mx-2: 0.5rem */
+    margin-top: -5rem; /* mt-[-80px]: -80px = -5rem */
+}
+
+@media (min-width: 640px) { /* sm: breakpoint 640px của Tailwind */
+    .doctor-infos {
+        margin-left: 0; /* sm:mx-0 */
+        margin-right: 0; /* sm:mx-0 */
+        margin-top: 0; /* sm:mt-0 */
+    }
+}
+.doctor-name {
+    display: flex;
+    align-items: center; /* items-center: căn giữa các phần tử con theo trục phụ */
+    gap: 0.5rem; /* gap-2: 0.5rem (2 * 0.25rem) */
+    font-size: 1.5rem; /* text-2xl: 1.5rem */
+    line-height: 2rem; /* Tailwind text-2xl đi kèm line-height 2rem */
+    font-weight: 500; /* font-medium: 500 */
+    color: #111827; /* text-gray-900: màu xám đậm của Tailwind */
+}
+.doctor-degree {
+    display: -webkit-inline-box;
+    align-items: center; /* items-center: căn giữa các phần tử con theo trục phụ */
+    gap: 0.5rem; /* gap-2: 0.5rem (2 * 0.25rem) */
+    font-size: 0.875rem; /* text-sm: 0.875rem */
+    line-height: 1.25rem; /* Tailwind text-sm đi kèm line-height 1.25rem */
+    margin-top: 0.25rem; /* mt-1: 0.25rem (1 * 0.25rem) */
+    color: #4b5563; /* text-gray-600: màu xám của Tailwind */
+}
+.doctor-exp {
+    padding-top: 0.125rem; /* py-0.5: 0.125rem (0.5 * 0.25rem) */
+    padding-bottom: 0.125rem; /* py-0.5: 0.125rem */
+    padding-left: 0.5rem; /* px-2: 0.5rem (2 * 0.25rem) */
+    padding-right: 0.5rem; /* px-2: 0.5rem */
+    border: 1px solid #d1d5db; /* border: viền mặc định của Tailwind, thường là gray-300 */
+    font-size: 0.75rem; /* text-xs: 0.75rem */
+    line-height: 1rem; /* Tailwind text-xs đi kèm line-height 1rem */
+    border-radius: 9999px; /* rounded-full: bo góc tối đa để tạo hình tròn */
+}
+.doctor-description {
+    margin-top: 0.75rem; /* mt-3: 0.75rem (3 * 0.25rem) */
+}
+.doctor-description-content {
+    font-size: 0.875rem; /* text-sm: 0.875rem */
+    line-height: 1.25rem; /* Tailwind text-sm đi kèm line-height 1.25rem */
+    color: #6b7280; /* text-gray-500: màu xám của Tailwind */
+}
+.fee {
+    color: #6b7280; /* text-gray-500: màu xám của Tailwind */
+    font-weight: 500; /* font-medium: 500 */
+    margin-top: 0.5rem; /* mt-2: 0.5rem (2 * 0.25rem) */
+}
+.booking {
+    margin-top: 1rem; /* mt-4: 1rem (4 * 0.25rem) */
+    font-weight: 500; /* font-medium: 500 */
+    color: #374151; /* text-gray-700: màu xám đậm của Tailwind */
+}
+
+@media (min-width: 640px) { /* sm: breakpoint 640px của Tailwind */
+    .booking {
+        margin-left: 18rem; /* sm:ml-72: 18rem (72 * 0.25rem) */
+        padding-left: 1rem; /* sm:pl-4: 1rem (4 * 0.25rem) */
+    }
+}
+.book-day {
+    display: flex;
+    gap: 0.75rem; /* gap-3: 0.75rem (3 * 0.25rem) */
+    align-items: center; /* items-center: căn giữa các phần tử con theo trục phụ */
+    width: 100%; /* w-full: 100% */
+    overflow-x: auto; /* overflow-x-scroll: cuộn ngang khi nội dung vượt kích thước */
+    margin-top: 1rem; /* mt-4: 1rem (4 * 0.25rem) */
+}
+.book-day-1 {
+    text-align: center; /* text-center: căn giữa văn bản */
+    padding-top: 1.5rem; /* py-6: 1.5rem (6 * 0.25rem) */
+    padding-bottom: 1.5rem; /* py-6: 1.5rem */
+    min-width: 4rem; /* min-w-16: 4rem (16 * 0.25rem) */
+    border-radius: 9999px; /* rounded-full: bo góc tối đa để tạo hình tròn */
+    cursor: pointer; /* cursor-pointer: con trỏ chuột dạng pointer */
+}
+.book-day-2 {
+    background-color: #3b82f6; /* bg-primary: giả sử primary là màu mặc định của Tailwind (blue-500) */
+    color: #ffffff; /* text-white: màu trắng */
+}
+.book-day-3 {
+    border: 1px solid #e5e7eb; /* border-gray-200: viền 1px với màu xám nhạt của Tailwind */
+}
+.book-time {
+    display: flex;
+    align-items: center; /* items-center: căn giữa các phần tử con theo trục phụ */
+    gap: 0.75rem; /* gap-3: 0.75rem (3 * 0.25rem) */
+    width: 100%; /* w-full: 100% */
+    overflow-x: auto; /* overflow-x-scroll: cuộn ngang khi nội dung vượt kích thước */
+    margin-top: 1rem; /* mt-4: 1rem (4 * 0.25rem) */
+}
+.book-time-1 {
+    font-size: 0.875rem; /* text-sm: 0.875rem */
+    line-height: 1.25rem; /* Tailwind text-sm đi kèm line-height 1.25rem */
+    font-weight: 300; /* font-light: 300 */
+    flex-shrink: 0; /* flex-shrink-0: không cho phép thu nhỏ */
+    padding-left: 1.25rem; /* px-5: 1.25rem (5 * 0.25rem) */
+    padding-right: 1.25rem; /* px-5: 1.25rem */
+    padding-top: 0.5rem; /* py-2: 0.5rem (2 * 0.25rem) */
+    padding-bottom: 0.5rem; /* py-2: 0.5rem */
+    border-radius: 9999px; /* rounded-full: bo góc tối đa để tạo hình tròn */
+    cursor: pointer; /* cursor-pointer: con trỏ chuột dạng pointer */
+}
+.book-time-2 {
+    background-color: #3b82f6; /* bg-primary: giả sử primary là màu mặc định của Tailwind (blue-500) */
+    color: #ffffff; /* text-white: màu trắng */
+}
+.book-time-3 {
+    color: #9ca3af; /* text-gray-400: màu xám của Tailwind */
+    border: 1px solid #d1d5db; /* border-gray-300: viền 1px với màu xám nhạt của Tailwind */
+}
+.book-button {
+    background-color: #3b82f6; /* bg-primary: giả sử primary là màu mặc định của Tailwind (blue-500) */
+    color: #ffffff; /* text-white: màu trắng */
+    font-size: 0.875rem; /* text-sm: 0.875rem */
+    line-height: 1.25rem; /* Tailwind text-sm đi kèm line-height 1.25rem */
+    font-weight: 300; /* font-light: 300 */
+    padding-left: 3.5rem; /* px-14: 3.5rem (14 * 0.25rem) */
+    padding-right: 3.5rem; /* px-14: 3.5rem */
+    padding-top: 0.75rem; /* py-3: 0.75rem (3 * 0.25rem) */
+    padding-bottom: 0.75rem; /* py-3: 0.75rem */
+    border-radius: 9999px; /* rounded-full: bo góc tối đa để tạo hình tròn */
+    margin-top: 1.5rem; /* my-6: 1.5rem (6 * 0.25rem) */
+    margin-bottom: 1.5rem; /* my-6: 1.5rem */
+}
