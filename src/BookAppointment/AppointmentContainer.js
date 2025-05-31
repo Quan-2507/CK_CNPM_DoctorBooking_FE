@@ -101,7 +101,7 @@ const AppointmentContainer = () => {
     return docInfo && (
         <div>
             {/* Doctor Details */}
-            <div className='container'>
+            <div className='book-appointment-container'>
                 <div>
                     <img className='doctor-image' src={`/assets/img/team-1.jpg`} alt={docInfo.name} />
                 </div>
