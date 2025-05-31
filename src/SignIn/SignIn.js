@@ -6,6 +6,8 @@ import {jwtDecode} from 'jwt-decode';
 import {useNavigate} from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import {setUser} from "../Redux/Slice/UserSlice";
+import Footer from "../Component/Footer";
+import Navbar from "../Component/Navbar";
 
 const SignIn = () => {
     const navigation = useNavigate();
@@ -69,13 +71,14 @@ const SignIn = () => {
     }
     return (
         <>
+            <Navbar/>
             <div className="container-sign-in">
                 <div className="form-container">
-                    <h2>Đăng nhập</h2>
+                    <h2 className={"signin-text"}>Đăng nhập</h2>
                     <form
                         onSubmit={handleSubmit}
                     >
-                        <h4><span style={{color: "red", display: "none"}}>Email đã tồn tại</span></h4>
+                        <h4 className={"email-exist"}><span style={{color: "red", display: "none"}}>Email đã tồn tại</span></h4>
                         <input
                             className={"input-signin-process"}
                             type="text"
@@ -95,7 +98,7 @@ const SignIn = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />
-                        <button
+                        <button className={"submit-button"}
                             type="submit"
                         >
                             Đăng nhập
@@ -103,13 +106,14 @@ const SignIn = () => {
                         <div style={{textAlign: "right", marginTop: "5px"}}><a
                             style={{marginTop: "3px", textDecoration: "none"}} href="#">Quên
                             mật khẩu</a></div>
-                        <div style={{display: "flex", justifyContent: "center"}}><span
+                        <div style={{display: "flex", justifyContent: "center"}}><span className={"signup-group"}
                             style={{padding: "5px", fontWeight: "500", fontSize: "medium"}}>Chưa có tài khoản</span><a
                             style={{marginTop: "5px"}} href="#">Đăng ký</a>
                         </div>
                     </form>
                 </div>
             </div>
+            <Footer/>
         </>
     );
 };

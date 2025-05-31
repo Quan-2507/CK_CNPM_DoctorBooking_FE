@@ -58,10 +58,11 @@ const Topbar = () => {
                             <div className="h-100 d-inline-flex align-items-center py-3 me-4">
                                 <a href="/signin" style={{
                                     color: "qua",
-                                    fontStyle: "italic",
-                                    textDecoration: "underline",
+                                    fontStyle: "normal",
+                                    //textDecoration: "underline",
                                     fontSize: "large"
-                                }}>Sign In</a>
+
+                                }}>Đăng Nhập</a>
                             </div>
                         )}
                         {/*<div className="h-100 d-inline-flex align-items-center py-3 me-4">*/}

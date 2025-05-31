@@ -3,6 +3,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: #EFF5FF;
 }
 
 .form-container {
@@ -10,12 +11,13 @@
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    background-color: white;
 }
 
-h2 {
+.signin-text {
     text-align: center;
 }
-h4{
+.email-exist{
     margin: 5px;
 }
 
@@ -27,8 +29,13 @@ h4{
     border: 1px solid #ccc;
     border-radius: 5px;
 }
-
-button {
+.input-signin-process{
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.submit-button {
     width: 100%;
     padding: 10px;
     background-color: #4CAF50;
@@ -38,19 +45,19 @@ button {
     cursor: pointer;
 }
 
-button[type="submit"]:hover {
+.submit-button[type="submit"]:hover {
     background-color: #3e8e41;
 }
 
-button:last-child {
+.submit-button:last-child {
     margin-top: 10px;
     background-color: #007bff;
 }
 
-button:last-child:hover {
+.submit-button:last-child:hover {
     background-color: #0056b3;
 }
-span{
+.signup-group{
     padding: 10px;
     font-size: small;
     opacity: 0.5;

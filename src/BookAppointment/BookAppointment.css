@@ -1,4 +1,4 @@
-.container {
+.book-appointment-container {
     display: flex;
     flex-direction: column;
     gap: 16px; /* gap-4 trong Tailwind tương ứng với 1rem = 16px */
@@ -8,7 +8,7 @@
 }
 
 @media (min-width: 640px) { /* sm: trong Tailwind tương ứng với breakpoint 640px */
-    .container {
+    .book-appointment-container {
         flex-direction: row;
     }
 }
