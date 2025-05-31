@@ -1,11 +1,11 @@
-.container {
+.container-sign-up {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-.form-container {
+.form-container-sign-up {
     width: 400px;
     padding: 20px;
     border: 1px solid #ccc;
@@ -19,9 +19,7 @@ h4{
     margin: 5px;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
+.input-sign-up {
     width: 95%;
     padding: 10px;
     margin-top: 5px;
@@ -30,8 +28,8 @@ input[type="password"] {
     border-radius: 5px;
 }
 
-button {
-    width: 100%;
+.button-sign-up {
+    width: 95%;
     padding: 10px;
     background-color: #4CAF50;
     color: white;
@@ -40,20 +38,20 @@ button {
     cursor: pointer;
 }
 
-button[type="submit"]:hover {
-    background-color: #3e8e41;
-}
+/*button[type="submit"]:hover {*/
+/*    background-color: #3e8e41;*/
+/*}*/
 
-button:last-child {
-    margin-top: 10px;
-    background-color: #007bff;
-}
+/*button:last-child {*/
+/*    margin-top: 10px;*/
+/*    background-color: #007bff;*/
+/*}*/
 
-button:last-child:hover {
-    background-color: #0056b3;
-}
-span{
-    padding: 10px;
-    font-size: small;
-    opacity: 0.5;
-}
+/*button:last-child:hover {*/
+/*    background-color: #0056b3;*/
+/*}*/
+/*span{*/
+/*    padding: 10px;*/
+/*    font-size: small;*/
+/*    opacity: 0.5;*/
+/*}*/

@@ -3,12 +3,13 @@ import  { useEffect, useState } from 'react';
 import './style.topbar.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faUser} from "@fortawesome/free-solid-svg-icons/faUser";
+import {useNavigate} from "react-router-dom";
 const Topbar = () => {
     const [userData, setUserData] = useState(null);
+    const navigate = useNavigate();
     useEffect(() => {
         // Lấy dữ liệu từ sessionStorage với key là 'user'
         const storedData = sessionStorage.getItem('user');
-
         // Kiểm tra nếu dữ liệu tồn tại
         if (storedData) {
             // Parse dữ liệu nếu nó là JSON
@@ -22,9 +23,8 @@ const Topbar = () => {
     const handleLogout = () => {
         // Xóa dữ liệu user trong sessionStorage (giả lập đăng xuất)
         sessionStorage.removeItem('user');
-
-        alert('Đăng xuất thành công!');
         // Có thể điều hướng đến trang đăng nhập: window.location.href = '/login'
+        navigate('/');
     };
     return (
         <>
@@ -57,10 +57,10 @@ const Topbar = () => {
                         ) : (
                             <div className="h-100 d-inline-flex align-items-center py-3 me-4">
                                 <a href="/signin" style={{
-                                    color: "qua",
-                                    fontStyle: "italic",
-                                    textDecoration: "underline",
-                                    fontSize: "large"
+                                    color: "GrayText",
+                                    // fontStyle: "italic",
+                                    // textDecoration: "underline",
+                                    fontSize: "large",
                                 }}>Sign In</a>
                             </div>
                         )}

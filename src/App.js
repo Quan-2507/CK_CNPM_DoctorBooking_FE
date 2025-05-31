@@ -18,7 +18,8 @@ import Admin from "./Pages/Admin/Admin";
 import Doctor from "./Pages/Doctor/Doctor";
 import Profile from "./Pages/Profile/Profile";
 import {Provider} from 'react-redux';
-import {store} from './Redux/Store/Store'; // Import store
+import {store} from './Redux/Store/Store';
+import SignUp from "./SignUp/SignUpScreen"; // Import store
 function App() {
     return (
         <Provider store={store}>
@@ -31,7 +32,7 @@ function App() {
                     <Route path="/admin" element={<Admin/>}/>
                     <Route path="/doctor" element={<Doctor/>}/>
                     <Route path="/profile" element={<Profile/>}/>
-
+                    <Route path="/signup" element={<SignUp/>}/>
                     {/*<Route path="/services" element={<Services />} />*/}
                     {/*<Route path="/contact" element={<Contact />} />*/}
                     {/*<Route path="/appointment" element={<Appointment />} />*/}
