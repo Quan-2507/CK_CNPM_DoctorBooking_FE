@@ -38,6 +38,8 @@ const SignIn = () => {
                 console.log(decodedToken);
                 const id = decodedToken.id;
                 const role = decodedToken.role;
+                sessionStorage.setItem("userId", id.toString());
+                console.log("Set userId to sessionStorage:", id.toString());
                 await localStorage.setItem("token", response.data.token);
                 if (token) {
                     axios.get(`${API_BASE_URL}/users/${id}`, {
@@ -78,10 +80,11 @@ const SignIn = () => {
                     <div style={{width:'100%', textAlign:"center", minHeight:"25px"}}>
                     <span className="text-error" style={{height:"20px",color:"red",fontSize:"13px"}}>{error}</span>
                     </div>
+
                     <form
                         onSubmit={handleSubmit} style={{}}
                     >
-                        <h4><span style={{color: "red", display: "none"}}>Email đã tồn tại</span></h4>
+                        <h4 className={"email-exist"}><span style={{color: "red", display: "none"}}>Email đã tồn tại</span></h4>
                         <input
                             className={"input-sign-in"}
                             type="text"
@@ -109,7 +112,7 @@ const SignIn = () => {
                         <div style={{textAlign: "right", marginTop: "5px", width: "95%"}}><a
                             style={{marginTop: "3px", textDecoration: "none"}} href="#">Quên
                             mật khẩu</a></div>
-                        <div style={{display: "flex", justifyContent: "center"}}><span
+                        <div style={{display: "flex", justifyContent: "center"}}><span className={"signup-group"}
                             style={{padding: "5px", fontWeight: "500", fontSize: "medium"}}>Chưa có tài khoản</span><a
                             style={{marginTop: "5px"}} href="/signup">Đăng ký</a>
                         </div>
