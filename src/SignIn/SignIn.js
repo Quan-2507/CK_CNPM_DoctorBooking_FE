@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import './style.css';
 import axios from "axios";
 import API_BASE_URL from '../config/api'; // Điều chỉnh đường dẫn tùy theo vị trí file
@@ -22,6 +22,7 @@ const SignIn = () => {
             return true;
         }
     };
+    const [error, setError] = useState('');
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (validateLogin()) {
@@ -65,6 +66,7 @@ const SignIn = () => {
                 }
                 // alert("Đăng nhập thành công!");
             } catch (error) {
+                setError(error.response ? error.response.data : error.message);
                 console.error("Lỗi đăng nhập:", error.response ? error.response.data : error.message);
             }
         }
@@ -73,14 +75,18 @@ const SignIn = () => {
         <>
             <Navbar/>
             <div className="container-sign-in">
-                <div className="form-container">
-                    <h2 className={"signin-text"}>Đăng nhập</h2>
+                <div className="form-container-sign-in">
+                    <h2>Đăng nhập</h2>
+                    <div style={{width:'100%', textAlign:"center", minHeight:"25px"}}>
+                    <span className="text-error" style={{height:"20px",color:"red",fontSize:"13px"}}>{error}</span>
+                    </div>
+
                     <form
-                        onSubmit={handleSubmit}
+                        onSubmit={handleSubmit} style={{}}
                     >
                         <h4 className={"email-exist"}><span style={{color: "red", display: "none"}}>Email đã tồn tại</span></h4>
                         <input
-                            className={"input-signin-process"}
+                            className={"input-sign-in"}
                             type="text"
                             name="email"
                             placeholder="Email"
@@ -90,7 +96,7 @@ const SignIn = () => {
                             required
                         />
                         <input
-                            className={"input-signin-process "}
+                            className={"input-sign-in"}
                             type="password"
                             name="password"
                             placeholder="Mật khẩu"
@@ -98,17 +104,17 @@ const SignIn = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />
-                        <button className={"submit-button"}
-                            type="submit"
+                        <button
+                            type="submit" className={"button-sign-in"}
                         >
                             Đăng nhập
                         </button>
-                        <div style={{textAlign: "right", marginTop: "5px"}}><a
+                        <div style={{textAlign: "right", marginTop: "5px", width: "95%"}}><a
                             style={{marginTop: "3px", textDecoration: "none"}} href="#">Quên
                             mật khẩu</a></div>
                         <div style={{display: "flex", justifyContent: "center"}}><span className={"signup-group"}
                             style={{padding: "5px", fontWeight: "500", fontSize: "medium"}}>Chưa có tài khoản</span><a
-                            style={{marginTop: "5px"}} href="#">Đăng ký</a>
+                            style={{marginTop: "5px"}} href="/signup">Đăng ký</a>
                         </div>
                     </form>
                 </div>
