@@ -4,8 +4,11 @@ import './style.topbar.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faUser} from "@fortawesome/free-solid-svg-icons/faUser";
 import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {clearUser} from "../Redux/Slice/UserSlice";
 const Topbar = () => {
     const [userData, setUserData] = useState(null);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     useEffect(() => {
         // Lấy dữ liệu từ sessionStorage với key là 'user'
@@ -23,6 +26,7 @@ const Topbar = () => {
     const handleLogout = () => {
         // Xóa dữ liệu user trong sessionStorage (giả lập đăng xuất)
         sessionStorage.removeItem('user');
+        dispatch(clearUser());
         // Có thể điều hướng đến trang đăng nhập: window.location.href = '/login'
         navigate('/');
     };
