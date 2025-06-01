@@ -26,6 +26,7 @@ const Topbar = () => {
     const handleLogout = () => {
         // Xóa dữ liệu user trong sessionStorage (giả lập đăng xuất)
         sessionStorage.removeItem('user');
+        sessionStorage.removeItem('token');
         dispatch(clearUser());
         // Có thể điều hướng đến trang đăng nhập: window.location.href = '/login'
         navigate('/');
