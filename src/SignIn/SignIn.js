@@ -38,7 +38,9 @@ const SignIn = () => {
                 console.log(decodedToken);
                 const id = decodedToken.id;
                 const role = decodedToken.role;
-                await sessionStorage.setItem("token", response.data.token);
+                sessionStorage.setItem("userId", id.toString());
+                console.log("Set userId to sessionStorage:", id.toString());
+                await localStorage.setItem("token", response.data.token);
                 if (token) {
                     axios.get(`${API_BASE_URL}/users/${id}`, {
                         headers: {Authorization: `Bearer ${token}`}
