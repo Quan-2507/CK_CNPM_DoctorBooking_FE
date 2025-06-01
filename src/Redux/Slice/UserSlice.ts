@@ -40,6 +40,7 @@ export const userSlice = createSlice({
             state.role = action.payload.role;
             state.dateOfBirth = action.payload.dateOfBirth;
             state.address = action.payload.address;
+            state.gender = action.payload.gender;
         },
         updateProfile: (state, action) => {
             state.username = action.payload.username ;
@@ -47,6 +48,7 @@ export const userSlice = createSlice({
             state.address = action.payload.address;
             state.phoneNumber = action.payload.phone;
             state.dateOfBirth = action.payload.dateOfBirth;
+            state.gender = action.payload.gender;
         },
         clearUser:() => initialState,
     },
