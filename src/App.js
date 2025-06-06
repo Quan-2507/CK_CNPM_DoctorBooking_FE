@@ -19,7 +19,8 @@ import Doctor from "./Pages/Doctor/Doctor";
 import Profile from "./Pages/Profile/Profile";
 import {Provider} from 'react-redux';
 import {store} from './Redux/Store/Store';
-import SignUp from "./SignUp/SignUpScreen"; // Import store
+import SignUp from "./SignUp/SignUpScreen";
+import DoctorsBySpecialtyScreen from "./Symptom/DoctorsBySpecialtyScreen"; // Import store
 function App() {
     return (
         <Provider store={store}>
@@ -42,6 +43,7 @@ function App() {
                     {/*<Route path="/feature" element={<Feature />} />*/}
                     {/*<Route path="*" element={<NotFound />} />*/}
                     <Route path="/symptoms" element={<SymptomScreen/>}/>
+                    <Route path="/doctors-by-specialty" element={<DoctorsBySpecialtyScreen />} />
                 </Routes>
 
 

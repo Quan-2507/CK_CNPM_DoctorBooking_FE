@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import {setUser} from "../Redux/Slice/UserSlice";
 import Footer from "../Component/Footer";
 import Navbar from "../Component/Navbar";
+import Topbar from "../Home/Topbar";
 
 const SignIn = () => {
     const navigation = useNavigate();
@@ -73,6 +74,7 @@ const SignIn = () => {
     }
     return (
         <>
+            <Topbar />
             <Navbar/>
             <div className="container-sign-in">
                 <div className="form-container-sign-in">
