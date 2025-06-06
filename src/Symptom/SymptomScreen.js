@@ -20,6 +20,7 @@ const SymptomScreen = () => {
     useEffect(() => {
         axios.get(`${API_BASE_URL}/symptoms`)
             .then(response => {
+                console.log('Dữ liệu nhận về:', response.data);
                 setSymptoms(response.data);
                 setLoading(false);
             })
@@ -34,7 +35,7 @@ const SymptomScreen = () => {
     const handleSelectSymptom = (symptom) => {
         // Kiểm tra xem triệu chứng đã được chọn chưa
         const isAlreadySelected = selectedSymptoms.some(
-            (selected) => selected.name === symptom.name
+            (selected) => selected.nameVi === symptom.nameVi
         );
 
         if (!isAlreadySelected) {
@@ -62,17 +63,72 @@ const SymptomScreen = () => {
     const filteredSymptoms = searchTerm
         ? fuse.search(searchTerm).map(result => result.item)
         : symptoms;
-    const handleContinue = () => {
+    // const handleContinue = () => {
+    //     if (selectedSymptoms.length === 0) {
+    //         alert('Vui lòng chọn ít nhất một triệu chứng trước khi tiếp tục!');
+    //         return;
+    //     }
+    //
+    //     // In danh sách triệu chứng đã chọn ra console (có thể thay bằng gọi API)
+    //     console.log('Danh sách triệu chứng đã chọn:', selectedSymptoms);
+    //
+    //
+    // };
+
+    const navigate = useNavigate();
+
+    const handleContinue = async () => {
         if (selectedSymptoms.length === 0) {
             alert('Vui lòng chọn ít nhất một triệu chứng trước khi tiếp tục!');
             return;
         }
 
-        // In danh sách triệu chứng đã chọn ra console (có thể thay bằng gọi API)
-        console.log('Danh sách triệu chứng đã chọn:', selectedSymptoms);
+        try {
+            const specialtiesSet = new Set();
+            const diseaseResults = [];
 
+            for (const symptom of selectedSymptoms) {
+                const res = await axios.post("http://localhost:8000/predict", {
+                    symptoms: [symptom.nameEn],
+                });
 
+                const { predicted_disease, predicted_specialty } = res.data;
+                specialtiesSet.add(predicted_specialty);
+
+                diseaseResults.push({
+                    symptom: symptom.nameVi,
+                    disease: predicted_disease,
+                    specialty: predicted_specialty,
+                });
+            }
+
+            const specialties = Array.from(specialtiesSet);
+            const doctorsBySpecialty = [];
+
+            for (const specialty of specialties) {
+                const response = await axios.get(`${API_BASE_URL}/doctors/department/name/${specialty}`);
+                doctorsBySpecialty.push({
+                    specialty,
+                    doctors: response.data,
+                });
+            }
+
+            navigate('/doctors-by-specialty', {
+                state: {
+                    doctorsBySpecialty,
+                    diseaseResults,
+                    doctorIds: doctorsBySpecialty.flatMap(group => group.doctors.map(doc => doc.id))
+                },
+            });
+
+        } catch (err) {
+            console.error("Lỗi khi gửi triệu chứng hoặc lấy dữ liệu bác sĩ:", err);
+            alert("Đã xảy ra lỗi khi xử lý. Vui lòng thử lại.");
+        }
     };
+
+
+
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error.message}</div>;
     return (
@@ -104,11 +160,11 @@ const SymptomScreen = () => {
                                     <div
                                         key={index}
                                         className={`${styles['symptom-item']} ${
-                                            selectedSymptoms.some((s) => s.name === symptom.name) ? styles.selected : ''
+                                            selectedSymptoms.some((s) => s.nameVi === symptom.nameVi) ? styles.selected : ''
                                         }`}
                                         onClick={() => handleSelectSymptom(symptom)}
                                     >
-                                        <h2 className={styles['symptom-name']}>{symptom.name}</h2>
+                                        <h2 className={styles['symptom-name']}>{symptom.nameVi}</h2>
                                     </div>
                                 ))
                             ) : (
@@ -122,7 +178,7 @@ const SymptomScreen = () => {
                                         className={styles['symptom-item']}
                                         onClick={() => handleSelectSymptom(symptom)}
                                     >
-                                        <h2 className={styles['symptom-name']}>{symptom.name}</h2>
+                                        <h2 className={styles['symptom-name']}>{symptom.nameVi}</h2>
                                     </div>
                                 ))
                             ) : (
@@ -142,7 +198,7 @@ const SymptomScreen = () => {
                                     className={styles['symptom-item']}
                                     onClick={() => handleRemoveSymptom(symptom)}
                                 >
-                                    <h2 className={styles['symptom-name']}>{symptom.name}</h2>
+                                    <h2 className={styles['symptom-name']}>{symptom.nameVi}</h2>
                                 </div>
                             ))
                         ) : (

@@ -28,23 +28,24 @@ const Navbar = () => (
         </button>
         <div className="collapse navbar-collapse" id="navbarCollapse">
             <div className="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="/" className="nav-item nav-link active">Home</a>
-                <a href="/about" className="nav-item nav-link">About</a>
-                <a href="/service" className="nav-item nav-link">Service</a>
-                <div className="nav-item dropdown">
-                    <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                    <div className="dropdown-menu rounded-0 rounded-bottom m-0">
-                        <a href="/feature" className="dropdown-item">Feature</a>
-                        <a href="/team" className="dropdown-item">Our Doctor</a>
-                        <a href="/appointment" className="dropdown-item">Appointment</a>
-                        <a href="/testimonial" className="dropdown-item">Testimonial</a>
-                    </div>
-                </div>
-                <a href="/contact" className="nav-item nav-link">Contact</a>
+                <a href="/" className="nav-item nav-link active">TRANG CHỦ</a>
+                <a href="/team" className="nav-item nav-link">ĐỘI NGŨ BÁC SĨ</a>
+                <a href="/about" className="nav-item nav-link">Về chúng tôi</a>
+                {/*<a href="/service" className="nav-item nav-link">Service</a>*/}
+                {/*<div className="nav-item dropdown">*/}
+                {/*    <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>*/}
+                {/*    <div className="dropdown-menu rounded-0 rounded-bottom m-0">*/}
+                {/*        <a href="/feature" className="dropdown-item">Feature</a>*/}
+                {/*        <a href="/team" className="dropdown-item">Our Doctor</a>*/}
+                {/*        <a href="/appointment" className="dropdown-item">Appointment</a>*/}
+                {/*        <a href="/testimonial" className="dropdown-item">Testimonial</a>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
+                <a href="/contact" className="nav-item nav-link">Liên hệ</a>
             </div>
-            <a href="/appointment" style={{zIndex:50}} className="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">
-                Appointment<i className="fa fa-arrow-right ms-3"></i>
-            </a>
+            <Link to="/symptoms" style={{zIndex: 50}} className="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">
+                Đặt lịch<i className="fa fa-arrow-right ms-3"></i>
+            </Link>
         </div>
     </nav>
 );
