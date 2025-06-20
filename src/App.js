@@ -27,6 +27,12 @@ import DoctorManagement from "./Pages/Admin/DoctorManagement/DoctorManagement";
 import EditDoctor from "./Pages/Admin/DoctorManagement/EditDoctor";
 import AddDoctor from "./Pages/Admin/DoctorManagement/AddDoctor";
 import PatientManagement from "./Pages/Admin/PatientManagement/PatientManagement";
+import DepartmentManagement from "./Pages/Admin/DepartmentManagement/DepartmentManagement";
+import History from "./Pages/Profile/History";
+import SymptomManagement from "./Pages/Admin/SymptomManagement/SymptomManagement";
+import ScheduleManagement from "./Pages/Admin/ScheduleManagement/ScheduleManagement";
+import AddDepartment from "./Pages/Admin/DepartmentManagement/AddDepartment";
+
 import AppointmentManagement from "./Pages/Admin/AppointmentManagement/AppointmentManagement";
 export const history = createBrowserHistory();
 function App() {
@@ -50,6 +56,7 @@ function App() {
                     {/*<Route path="/team" element={<Team />} />*/}
                     {/*<Route path="/feature" element={<Feature />} />*/}
                     {/*<Route path="*" element={<NotFound />} />*/}
+                    <Route path="/history" element={<History />} />
                     <Route path="/symptoms" element={<SymptomScreen/>}/>
                     <Route path="/doctors-by-specialty" element={<DoctorsBySpecialtyScreen />} />
 
@@ -61,9 +68,10 @@ function App() {
                     <Route path="/doctorManagement" element={<DoctorManagement/>}/>
                     <Route path="/admin/doctormng/edit/:id" element={<EditDoctor />} />
                     <Route path="/admin/doctormng/adddoc" element={<AddDoctor />} />
-                    {/*<Route path="/departmentManagement" element={<DepartmentManagement/>}/>*/}
-
-
+                    <Route path="/departmentManagement" element={<DepartmentManagement/>}/>
+                    <Route path="/symptomManagement" element={<SymptomManagement/>}/>
+                    <Route path="/scheduleManagement" element={<ScheduleManagement/>}/>
+                    <Route path="/addDepartment" element={<AddDepartment/>}/>
                     {/*<Route path="/symptomManagement" element={<SymptomtManagement/>}/>*/}
 
 
