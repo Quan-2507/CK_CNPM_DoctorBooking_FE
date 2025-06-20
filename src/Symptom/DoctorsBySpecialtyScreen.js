@@ -19,7 +19,7 @@ const DoctorsBySpecialtyScreen = () => {
                 <div className="container">
                     <div className="text-center mx-auto mb-5" style={{ maxWidth: 600 }}>
                         <h1>Kết quả dự đoán</h1>
-                        <p>Bệnh có thể mắc phải: {diseaseResults?.join(', ')}</p>
+                        {/*<p>Bệnh có thể mắc phải: {diseaseResults?.join(', ')}</p>*/}
                     </div>
                     {doctorsBySpecialty.map((group, idx) => (
                         <div key={idx}>
