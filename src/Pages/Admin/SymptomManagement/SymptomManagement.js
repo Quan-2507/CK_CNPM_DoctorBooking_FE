@@ -20,18 +20,18 @@ import Highlighter from "react-highlight-words";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
-    getListDepartmentAction
-} from "../redux/action/DepartmentAction";
+  getListSymptom
+} from "../redux/action/SymptomAction";
 
 import Sidebar from "../Sidebar/Sidebar";
-import {DepartmentReducer} from "../redux/reducer/DepartmentReducer";
 
-export default function DepartmentManagement() {
+export default function SymptomManagement() {
     const dispatch = useDispatch();
-    const departmentReducer = useSelector((state) => state.DepartmentReducer) || {};
-    const { arrDepartment } = departmentReducer;
+    const symptomReducer = useSelector((state) => state.SymptomReducer) || {};
+    const { arrSymptom } = symptomReducer;
 
-    const data = arrDepartment;
+    const data = arrSymptom;
+    console.log("data",data)
     const [searchText, setSearchText] = useState("");
     const [searchedColumn, setSearchedColumn] = useState("");
     const searchInput = useRef(null);
@@ -40,7 +40,7 @@ export default function DepartmentManagement() {
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     useEffect(() => {
-        dispatch(getListDepartmentAction());
+        dispatch(getListSymptom());
     }, [dispatch]);
 
     const handleSearch = (selectedKeys, confirm, dataIndex) => {
@@ -140,20 +140,26 @@ export default function DepartmentManagement() {
             sortDirections: ["ascend", "descend"],
         },
         {
-            title: "Tên khoa",
+            title: "Tên triệu chứng",
             dataIndex: "name",
             key: "nameVi",
             ...getColumnSearchProps("nameVi"),
             sorter: (a, b) => a.name.length - b.name.length,
         },
         {
-            title: "Tên khoa (Tiếng anh)",
+            title: "Tên triệu chứng(Tiếng anh)",
             dataIndex: "name",
             key: "nameEn",
             ...getColumnSearchProps("nameEn"),
             sorter: (a, b) => a.name.length - b.name.length,
         },
-
+        {
+            title: "Mô tả",
+            dataIndex: "name",
+            key: "description",
+            ...getColumnSearchProps("description"),
+            sorter: (a, b) => a.name.length - b.name.length,
+        },
 
         {
             title: "Quản lý",
@@ -200,10 +206,10 @@ export default function DepartmentManagement() {
             </div>
             <div className="col-md-9 p-3">
                 <div className="mb-3 d-flex flex-column align-items-start">
-                    <h3 className="text-lg">Quản lý khoa</h3>
+                    <h3 className="text-lg">Quản lý triệu chứng</h3>
                     <Button type="primary" className="mt-2 bg-primary">
-                        <Link to="/admin/addDepartment" style={{ color: "white", textDecoration: "none" }}>
-                            + Thêm khoa mới
+                        <Link to="/admin/doctormng/adddoc" style={{ color: "white", textDecoration: "none" }}>
+                            + Thêm triệu chứng mới
                         </Link>
                     </Button>
                 </div>
