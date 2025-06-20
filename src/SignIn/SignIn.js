@@ -32,16 +32,16 @@ const SignIn = () => {
                     email,
                     password,
                 });
-
                 // Lưu JWT Token vào LocalStorage hoặc Context
                 const token = response.data.token;
                 const decodedToken = jwtDecode(token);
                 console.log(decodedToken);
-                const id = decodedToken.id;
+                const id = decodedToken.sub;
                 const role = decodedToken.role;
+                console.log('id',id);
                 sessionStorage.setItem("userId", id.toString());
                 console.log("Set userId to sessionStorage:", id.toString());
-                await localStorage.setItem("token", response.data.token);
+                localStorage.setItem("token", response.data.token);
                 if (token) {
                     axios.get(`${API_BASE_URL}/users/${id}`, {
                         headers: {Authorization: `Bearer ${token}`}

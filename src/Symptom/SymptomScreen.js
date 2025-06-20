@@ -4,7 +4,11 @@ import styles from './Symptom.module.css';
 import {useState} from 'react';
 import axios from "axios";
 import Fuse from 'fuse.js';
-import  API_BASE_URL  from '../config/api'; // Điều chỉnh đường dẫn tùy theo vị trí file
+import  API_BASE_URL  from '../config/api';
+import Topbar from "../Home/Topbar";
+import Navbar from "../Component/Navbar";
+import Footer from "../Component/Footer";
+import BackToTop from "../Home/BackToTop"; // Điều chỉnh đường dẫn tùy theo vị trí file
 const SymptomScreen = () => {
     // const navigate = useNavigate();
     // const symptoms = [{name: 'Sốt', department: 'khoa nội'}, {name: 'ho', department: 'khoa ngoại'}, {
@@ -31,7 +35,6 @@ const SymptomScreen = () => {
     }, []);
     const [selectedSymptoms, setSelectedSymptoms] = useState([]);
 
-
     const handleSelectSymptom = (symptom) => {
         // Kiểm tra xem triệu chứng đã được chọn chưa
         const isAlreadySelected = selectedSymptoms.some(
@@ -56,7 +59,7 @@ const SymptomScreen = () => {
 
     // Lọc danh sách triệu chứng dựa trên giá trị tìm kiếm
     const fuse = new Fuse(symptoms, {
-        keys: ['name'], // Tìm kiếm trên field 'name'
+        keys: ['nameVi'], // Tìm kiếm trên field 'name'
         threshold: 0.3, // Độ chính xác (0: chính xác tuyệt đối, 1: rất mờ)
     });
 
@@ -133,6 +136,8 @@ const SymptomScreen = () => {
     if (error) return <div>Error: {error.message}</div>;
     return (
         <>
+            <Topbar />
+            <Navbar />
             <div className={styles['search-container']}>
                 <input
                     type="text"
@@ -212,7 +217,8 @@ const SymptomScreen = () => {
                 <button className={styles['pass-btn']} onClick={handleContinue}>Bỏ qua</button>
                 <button className={styles['continue-btn']} onClick={handleContinue}>Tiếp tục</button>
             </div>
-
+            <Footer />
+            <BackToTop />
         </>
     );
 };
