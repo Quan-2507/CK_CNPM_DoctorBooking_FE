@@ -20,7 +20,8 @@ import Profile from "./Pages/Profile/Profile";
 import {Provider} from 'react-redux';
 import {store} from './Redux/Store/Store';
 import SignUp from "./SignUp/SignUpScreen";
-import DoctorsBySpecialtyScreen from "./Symptom/DoctorsBySpecialtyScreen"; // Import store
+import DoctorsBySpecialtyScreen from "./Symptom/DoctorsBySpecialtyScreen";
+import History from "./Pages/Profile/History"; // Import store
 function App() {
     return (
         <Provider store={store}>
@@ -35,6 +36,7 @@ function App() {
                     <Route path="/doctor" element={<Doctor/>}/>
                     <Route path="/profile" element={<Profile/>}/>
                     <Route path="/signup" element={<SignUp/>}/>
+                    <Route path="/history" element={<History/>}/>
                     {/*<Route path="/services" element={<Services />} />*/}
                     {/*<Route path="/contact" element={<Contact />} />*/}
                     {/*<Route path="/appointment" element={<Appointment />} />*/}
