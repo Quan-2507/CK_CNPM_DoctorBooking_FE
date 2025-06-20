@@ -1,11 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { userSlice } from '../Slice/UserSlice'
 import {UserReducer} from "../../Pages/Admin/redux/reducer/UserReducer";
+import {DepartmentReducer} from "../../Pages/Admin/redux/reducer/DepartmentReducer";
+import {SymptomReducer} from "../../Pages/Admin/redux/reducer/SymptomReducer";
 
 export const store = configureStore({
     reducer: {
         user: userSlice.reducer,
-        UserReducer
+        UserReducer,
+        DepartmentReducer,
+        SymptomReducer,
+
     },
     // middleware: (getDefaultMiddleware) =>
     //     getDefaultMiddleware()
