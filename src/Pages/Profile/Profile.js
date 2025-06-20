@@ -19,14 +19,12 @@ function Profile() {
     const dispatch = useDispatch();
     const user = useSelector((state: RootState) => state.user);
 
-    const [file, setFile] = useState("");
     const [view, setView] = useState('profile');
 
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [address, setAddress] = useState("");
-    const [date, setDate] = useState(new Date());
     const [error, setError] = useState('');
     const [isChanged, setIsChanged] = useState(false);
     const [gender, setGender] = useState('');
@@ -78,7 +76,8 @@ function Profile() {
             address !== initial.address ||
             gender !== initial.gender;
         setIsChanged(hasChanged);
-    }, [email, username, phoneNumber, address, initial]);
+        console.log(hasChanged);
+    }, [email, username, phoneNumber, address, gender, initial]);
 
     const validate = () => {
         if (!email || !phoneNumber || !address || !username) {
@@ -94,11 +93,32 @@ function Profile() {
         return true;
     };
 
+    //lấy danh sách ngày đã đặt lịch
+    const [appointments, setAppointments] = useState([]);
+
+    useEffect(() => {
+        const fetchAppointments = async () => {
+            try {
+                const userId = sessionStorage.getItem("userId");
+                const token = localStorage.getItem("token");
+                const response = await axios.get(`${API_BASE_URL}/bookings/history/users/${userId}`,
+                    {
+                        headers: {Authorization: `Bearer ${token}`}
+                    }); // Thay bằng URL API thực tế
+                setAppointments(response.data);
+                console.log("appointments", appointments);
+            } catch (error) {
+                console.error('Lỗi khi lấy danh sách lịch hẹn:', error);
+            }
+        };
+        fetchAppointments();
+    }, []); // Chạy một lần khi component mount
+
     const handleUpdate = async (e) => {
         e.preventDefault();
         if (validate()) {
             try {
-                const token = sessionStorage.getItem("token");
+                const token = localStorage.getItem("token");
                 console.log("token", token)
                 console.log("gender", gender)
                 const response = await axios.put(`${API_BASE_URL}/users/edit`, {
@@ -119,7 +139,7 @@ function Profile() {
                     phoneNumber,
                     username,
                     address,
-                    gender: initial.gender
+                    gender: gender
                 };
                 sessionStorage.setItem("user", JSON.stringify(updatedUser));
                 dispatch(setUser(updatedUser));
@@ -192,7 +212,7 @@ function Profile() {
             });
             return false;
         }
-        if (!password || !newPassword||!confirmPassword) {
+        if (!password || !newPassword || !confirmPassword) {
             toast.error("Please fill in the blank!", {
                 position: "top-center",
                 autoClose: 2000,
@@ -228,11 +248,9 @@ function Profile() {
         e.preventDefault();
         if (validatePassword()) {
             try {
-                const token = sessionStorage.getItem("token");
+                const token = localStorage.getItem("token");
                 console.log("token", token)
-                const response = await axios.put(`${API_BASE_URL}/users/edit`, {
-
-                    }, {
+                const response = await axios.put(`${API_BASE_URL}/users/edit`, {}, {
                         headers: {
                             Authorization: `Bearer ${token}` // ✅ Thêm header Authorization
                         }
@@ -254,17 +272,18 @@ function Profile() {
                 <div className="profile-container flex-center">
                     <div className="nav-buttons" style={{textAlign: "center", marginBottom: '20px'}}>
                         <button onClick={() => setView('profile')}
-                                className={view === 'profile' ? 'active navigate-profile' : '' + " form-input"}
-                                style={{width: '30%', borderBottom: 'none'}}>Profile
+                                className={view === 'profile' ? 'active navigate-profile' + " form-input" : '' + " form-input"}
+                                style={{width: '30%',border: 'none', background: "white", margin: 0}}>Hồ sơ
                         </button>
                         <button onClick={() => setView('changePassword')}
-                                className={view === 'changePassword' ? 'active navigate-profile' : '' + " form-input"}
-                                style={{width: '30%', borderBottom: 'none'}}>Change Password
+                                className={view === 'changePassword' ? 'active navigate-profile' + " form-input" : '' + " form-input"}
+                                style={{width: '30%',border: 'none', background: "white", margin: 0}}>Đổi mật khẩu
                         </button>
+
                     </div>
-                    {view === 'profile' ? (
-                        <div>
-                            <h2 className="form-heading">Profile</h2>
+                    {view === 'profile' && (
+                        <div className="main-components">
+                            <h2 className="form-heading">Hồ sơ</h2>
                             <div className="img-container">
                                 <img
                                     src={'https://cellphones.com.vn/sforum/wp-content/uploads/2023/10/avatar-trang-4.jpg'}
@@ -281,12 +300,12 @@ function Profile() {
                                 className="register-form"
                             >
                                 <div className="form-same-row">
-                                    <label className={"left-label"}>Full name: </label>
+                                    <label className={"left-label"}>Họ và tên: </label>
                                     <input
                                         type="text"
                                         name="firstname"
                                         className="form-input right-input"
-                                        placeholder="Enter your first name"
+                                        placeholder="Nhập tên của bạn"
                                         value={username}
                                         onChange={(e) => setUsername(e.target.value)}
                                     />
@@ -297,35 +316,35 @@ function Profile() {
                                         type="email"
                                         name="email"
                                         className="form-input right-input"
-                                        placeholder="Enter your email"
+                                        placeholder="Nhập email của bạn"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
                                     />
                                 </div>
                                 <div className="form-same-row">
-                                    <label className={"left-label"}>Phone: </label>
+                                    <label className={"left-label"}>Số điện thoại: </label>
                                     <input
                                         type="text"
                                         name="mobile"
                                         className="form-input right-input"
-                                        placeholder="Enter your mobile number"
+                                        placeholder="Nhập số điện thoại của bạn"
                                         value={phoneNumber}
                                         onChange={(e) => setPhoneNumber(e.target.value)}
                                     />
                                 </div>
                                 <div className="form-same-row">
-                                    <label className={"left-label"}>Address: </label>
+                                    <label className={"left-label"}>Địa chỉ: </label>
                                     <input
                                         type="text"
                                         name="mobile"
                                         className="form-input right-input"
-                                        placeholder="Enter your address"
+                                        placeholder="Nhập địa chỉ của bạn"
                                         value={address}
                                         onChange={(e) => setAddress(e.target.value)}
                                     />
                                 </div>
                                 <div className="form-same-row">
-                                    <label className={"left-label"}>Gender: </label>
+                                    <label className={"left-label"}>Giới tính: </label>
                                     <label>
                                         <input
                                             type="radio"
@@ -334,7 +353,7 @@ function Profile() {
                                             checked={gender === 'MALE'}
                                             onChange={(e) => setGender(e.target.value)}
                                         />
-                                        Male
+                                        Nam
                                     </label><br/>
 
                                     <label>
@@ -345,7 +364,7 @@ function Profile() {
                                             checked={gender === 'FEMALE'}
                                             onChange={(e) => setGender(e.target.value)}
                                         />
-                                        Female
+                                        Nũ
                                     </label><br/>
 
                                     <label>
@@ -356,7 +375,7 @@ function Profile() {
                                             checked={gender === 'OTHER'}
                                             onChange={(e) => setGender(e.target.value)}
                                         />
-                                        Other
+                                        Khác
                                     </label>
                                 </div>
                                 {/*<div className="form-same-row">*/}
@@ -381,37 +400,38 @@ function Profile() {
                                 </div>
                             </form>
                         </div>
-                    ) : (
-                        <div className="change-password-form" style={{height: '400px'}}>
-                            <h2 className="form-heading" style={{marginBottom: "40px"}}>Change Password</h2>
+                    )}
+                    {view === 'changePassword' && (
+                        <div className="change-password-form main-components" style={{height: '400px'}}>
+                            <h2 className="form-heading" style={{marginBottom: "40px"}}>Đổi mật khẩu </h2>
                             <form className="register-form" onSubmit={handleChange}>
                                 <div className="form-same-row" style={{marginBottom: "10px"}}>
-                                    <label className={"left-label"}>Current Password: </label>
+                                    <label className={"left-label"}>Mật khẩu hiện tại: </label>
                                     <input
                                         type="password"
                                         name="mobile"
                                         className="form-input right-input"
-                                        placeholder="Enter your current password"
+                                        placeholder="Nhập mật khẩu hiện tại"
                                         onChange={(e) => setPassword(e.target.value)}
                                     />
                                 </div>
                                 <div className="form-same-row" style={{marginBottom: "10px"}}>
-                                    <label className={"left-label"}>New Password: </label>
+                                    <label className={"left-label"}>Mật khẩu mới: </label>
                                     <input
                                         type="password"
                                         name="mobile"
                                         className="form-input right-input"
-                                        placeholder="Enter your new password"
+                                        placeholder="Nhập mật khẩu mới"
                                         onChange={(e) => setNewPassword(e.target.value)}
                                     />
                                 </div>
                                 <div className="form-same-row" style={{marginBottom: "10px"}}>
-                                    <label className={"left-label"}>Re-enter password: </label>
+                                    <label className={"left-label"}>Xác nhận mật khẩu: </label>
                                     <input
                                         type="password"
                                         name="mobile"
                                         className="form-input right-input"
-                                        placeholder="Re-enter your current password"
+                                        placeholder="Nhập lại mật khẩu mới"
                                         onChange={(e) => setConfirmPassword(e.target.value)}
                                     />
                                 </div>

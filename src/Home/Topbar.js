@@ -23,6 +23,9 @@ const Topbar = () => {
     }, []);
     console.log("user", userData)
     // const userData = {fullname:"dang thanh sang"};
+    const handleNavigate = () => {
+        navigate('/history')
+    }
     const handleLogout = () => {
         // Xóa dữ liệu user trong sessionStorage (giả lập đăng xuất)
         sessionStorage.removeItem('user');
@@ -53,7 +56,10 @@ const Topbar = () => {
                                     <a href="/profile" className="nav-link dropdown-toggle"
                                        style={{position: 'relative', zIndex: 1000}}><FontAwesomeIcon icon={faUser}/> {userData?.username}</a>
                                     <div className="dropdown-menu rounded-0 rounded-bottom m-0" style={{zIndex: 3000}}>
-                                        <div className="dropdown-item" style={{color: "red", fontStyle: "italic"}}
+                                        <div className="dropdown-item" style={{color: "black", fontStyle: "italic",cursor:"pointer"}}
+                                             onClick={handleNavigate}>Lịch sử
+                                        </div>
+                                        <div className="dropdown-item" style={{color: "red", fontStyle: "italic",cursor:"pointer"}}
                                              onClick={handleLogout}>Đăng xuất
                                         </div>
                                     </div>
@@ -61,7 +67,7 @@ const Topbar = () => {
                             </div>
                         ) : (
                             <div className="h-100 d-inline-flex align-items-center py-3 me-4">
-                                <a href="/signin" style={{
+                            <a href="/signin" style={{
 
                                     color: "qua",
                                     fontStyle: "normal",
