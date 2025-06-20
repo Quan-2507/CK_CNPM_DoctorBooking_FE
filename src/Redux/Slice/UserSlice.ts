@@ -7,7 +7,7 @@ interface User {
     username?: string; // Sửa từ String thành string
     avatar?: string; // Sửa từ String thành string
     gender?: string; // Sửa từ String thành string
-    dateOfBirth: Date; // Không cần optional vì có giá trị mặc định
+    dateOfBirth: string; // Không cần optional vì có giá trị mặc định
     address?: string; // Sửa từ String thành string
     role?: string; // Sửa từ String thành string
     status: boolean;
@@ -21,7 +21,7 @@ const initialState: User =  {
     username: "Dét đẹp trai số 1 thế giới",
     avatar: "",
     gender: "",
-    dateOfBirth: new Date('2000-01-01'),
+    dateOfBirth: "2000-01-01",
     address: "",
     role: "",
     status:false

@@ -10,6 +10,7 @@ import Footer from "../Component/Footer";
 import Navbar from "../Component/Navbar";
 import Topbar from "../Home/Topbar";
 
+
 const SignIn = () => {
     const navigation = useNavigate();
     const dispatch = useDispatch();
@@ -37,8 +38,8 @@ const SignIn = () => {
                 const token = response.data.token;
                 const decodedToken = jwtDecode(token);
                 console.log(decodedToken);
-                const id = decodedToken.id;
-                const role = decodedToken.role;
+                const id = decodedToken?.sub;
+                const role = decodedToken?.role;
                 sessionStorage.setItem("userId", id.toString());
                 console.log("Set userId to sessionStorage:", id.toString());
                 await localStorage.setItem("token", response.data.token);
@@ -80,7 +81,7 @@ const SignIn = () => {
                 <div className="form-container-sign-in">
                     <h2>Đăng nhập</h2>
                     <div style={{width:'100%', textAlign:"center", minHeight:"25px"}}>
-                    <span className="text-error" style={{height:"20px",color:"red",fontSize:"13px"}}>{error}</span>
+                        <span className="text-error" style={{height:"20px",color:"red",fontSize:"13px"}}>{error}</span>
                     </div>
                     <form
                         onSubmit={handleSubmit} style={{}}

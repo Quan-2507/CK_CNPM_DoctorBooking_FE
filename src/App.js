@@ -21,17 +21,24 @@ import {Provider} from 'react-redux';
 import {store} from './Redux/Store/Store';
 import SignUp from "./SignUp/SignUpScreen";
 import DoctorsBySpecialtyScreen from "./Symptom/DoctorsBySpecialtyScreen"; // Import store
+import { createBrowserHistory } from "history";
+import DoctorDetail from "./Detail/DoctorDetail";
+import DoctorManagement from "./Pages/Admin/DoctorManagement/DoctorManagement";
+import EditDoctor from "./Pages/Admin/DoctorManagement/EditDoctor";
+import AddDoctor from "./Pages/Admin/DoctorManagement/AddDoctor";
+import PatientManagement from "./Pages/Admin/PatientManagement/PatientManagement";
+export const history = createBrowserHistory();
 function App() {
     return (
         <Provider store={store}>
-            <Router>
+            <Router history={history}>
                 {/*<Navbar />*/}
                 <Routes>
                     <Route path="/" element={<Home/>}/>
                     <Route path="/appointment/:id" element={<Appointment />} />
                     {/*<Route path="/doctors/:id" element={<Appointment/>}/>*/}
                     <Route path="/signin" element={<SignIn/>}/>
-                    <Route path="/admin" element={<Admin/>}/>
+
                     <Route path="/doctor" element={<Doctor/>}/>
                     <Route path="/profile" element={<Profile/>}/>
                     <Route path="/signup" element={<SignUp/>}/>
@@ -44,6 +51,27 @@ function App() {
                     {/*<Route path="*" element={<NotFound />} />*/}
                     <Route path="/symptoms" element={<SymptomScreen/>}/>
                     <Route path="/doctors-by-specialty" element={<DoctorsBySpecialtyScreen />} />
+
+                    {/*Admin*/}
+                    <Route path="/admin" element={<Admin/>}/>
+                    <Route path="/patientManagement" element={<PatientManagement/>}/>
+
+
+                    <Route path="/doctorManagement" element={<DoctorManagement/>}/>
+                    <Route path="/admin/doctormng/edit/:id" element={<EditDoctor />} />
+                    <Route path="/admin/doctormng/adddoc" element={<AddDoctor />} />
+                    {/*<Route path="/departmentManagement" element={<DepartmentManagement/>}/>*/}
+
+
+                    {/*<Route path="/symptomManagement" element={<SymptomtManagement/>}/>*/}
+
+
+                    {/*<Route path="/scheduleManagement" element={<ScheduleManagement/>}/>*/}
+
+
+                    {/*<Route path="/appointmentManagement" element={<AppointmentManagement/>}/>*/}
+
+
                 </Routes>
 
 
