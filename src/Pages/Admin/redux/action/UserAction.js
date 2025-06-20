@@ -2,7 +2,8 @@
 import {GET_ACCOUNT_LIST, GET_ACCOUNT_PATIENT_LIST, GET_ACCOUNT_DOCTOR_LIST, GET_ACCOUNT_DETAIL,GET_DOCTOR_DEPARTMENT_DETAIL,GET_DEPARTMENT_FOR_DOCTOR_FROM_ADMIN, GET_DOCTOR_WITHOUT_DEPARTMENT} from "../constants";
 import { history } from "../../../../App";
 import { userService } from "../../services/UserService";
-import { notification } from "antd";
+import {message, notification} from "antd";
+import axios from "axios";
 
 export const getListAccountAction = () => {
     return async (dispatch) => {
@@ -211,3 +212,23 @@ export const createAccountAction = (newAc) => {
         }
     };
 };
+export const deleteDoctor = (id) => {
+    return async (dispatch) => {
+        try {
+            const token = localStorage.getItem('token');
+            await axios.delete(`http://localhost:8080/api/admin/doctors/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            message.success("Xóa bác sĩ thành công!");
+
+            // Sau khi xoá xong, load lại danh sách bác sĩ
+            dispatch(getListAccountDoctorAction());
+        } catch (error) {
+            console.error("Lỗi xoá bác sĩ:", error);
+            message.error("Xóa bác sĩ thất bại!");
+        }
+    };
+};
+

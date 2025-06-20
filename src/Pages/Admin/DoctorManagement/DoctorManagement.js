@@ -21,7 +21,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
     getListAccountDoctorAction,
-    deleteAccountAction,
+    deleteAccountAction, deleteDoctor,
 } from "../redux/action/UserAction";
 
 import Sidebar from "../Sidebar/Sidebar";
@@ -207,8 +207,8 @@ export default function DoctorManagement() {
                         danger
                         icon={<DeleteOutlined />}
                         onClick={() => {
-                            if (window.confirm(`Bạn chắc chắn muốn xóa ${data.name}?`)) {
-                                dispatch(deleteAccountAction(data.id));
+                            if (window.confirm(`Bạn chắc chắn muốn xóa bác sĩ ${data.name}?`)) {
+                                dispatch(deleteDoctor(data.id)); // Gọi API xoá
                             }
                         }}
                     />
