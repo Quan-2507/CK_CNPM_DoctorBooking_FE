@@ -10,6 +10,7 @@ import {
     Row,
     Col,
     Spin,
+    Select
 } from "antd";
 import { useFormik } from "formik";
 import { useParams, useNavigate } from "react-router-dom";
@@ -24,7 +25,7 @@ const EditDoctor = () => {
     const navigate = useNavigate();
     const [doctor, setDoctor] = useState(null);
     const [loading, setLoading] = useState(true);
-
+    const [departments, setDepartments] = useState([]);
     useEffect(() => {
         const fetchDoctor = async () => {
             try {
@@ -47,6 +48,23 @@ const EditDoctor = () => {
 
         fetchDoctor();
     }, [id]);
+
+    useEffect(() => {
+        const fetchDepartments = async () => {
+            try {
+                const res = await axios.get(`${API_BASE_URL}/departments`);
+                setDepartments(res.data);
+            } catch (error) {
+                notification.error({
+                    message: "Error",
+                    description: "Cannot load departments.",
+                });
+            }
+        };
+
+        fetchDepartments();
+    }, []);
+
 
     const formik = useFormik({
         enableReinitialize: true,
@@ -141,15 +159,18 @@ const EditDoctor = () => {
                             />
                         </Form.Item>
 
-                        <Form.Item label="Department ID">
-                            <InputNumber
-                                name="departmentId"
+                        <Form.Item label="Khoa">
+                            <Select
                                 value={formik.values.departmentId}
-                                onChange={(value) =>
-                                    formik.setFieldValue("departmentId", value)
-                                }
+                                onChange={(value) => formik.setFieldValue("departmentId", value)}
                                 style={{ width: "100%" }}
-                            />
+                            >
+                                {departments.map((dept) => (
+                                    <Select.Option key={dept.id} value={dept.id}>
+                                        {dept.nameVi}
+                                    </Select.Option>
+                                ))}
+                            </Select>
                         </Form.Item>
 
                         <Form.Item label="Experience (years)">
@@ -229,16 +250,16 @@ const EditDoctor = () => {
                             )}
                         </Form.Item>
 
-                        <Form.Item label="User ID">
-                            <InputNumber
-                                name="userId"
-                                value={formik.values.userId}
-                                onChange={(value) =>
-                                    formik.setFieldValue("userId", value)
-                                }
-                                style={{ width: "100%" }}
-                            />
-                        </Form.Item>
+                        {/*<Form.Item label="User ID">*/}
+                        {/*    <InputNumber*/}
+                        {/*        name="userId"*/}
+                        {/*        value={formik.values.userId}*/}
+                        {/*        onChange={(value) =>*/}
+                        {/*            formik.setFieldValue("userId", value)*/}
+                        {/*        }*/}
+                        {/*        style={{ width: "100%" }}*/}
+                        {/*    />*/}
+                        {/*</Form.Item>*/}
 
                         <Form.Item>
                             <Button
