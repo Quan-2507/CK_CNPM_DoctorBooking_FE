@@ -10,6 +10,7 @@ import Footer from "../Component/Footer";
 import Navbar from "../Component/Navbar";
 import Topbar from "../Home/Topbar";
 
+
 const SignIn = () => {
     const navigation = useNavigate();
     const dispatch = useDispatch();
@@ -32,16 +33,16 @@ const SignIn = () => {
                     email,
                     password,
                 });
+
                 // Lưu JWT Token vào LocalStorage hoặc Context
                 const token = response.data.token;
                 const decodedToken = jwtDecode(token);
                 console.log(decodedToken);
-                const id = decodedToken.sub;
-                const role = decodedToken.role;
-                console.log('id',id);
+                const id = decodedToken?.sub;
+                const role = decodedToken?.role;
                 sessionStorage.setItem("userId", id.toString());
                 console.log("Set userId to sessionStorage:", id.toString());
-                localStorage.setItem("token", response.data.token);
+                await localStorage.setItem("token", response.data.token);
                 if (token) {
                     axios.get(`${API_BASE_URL}/users/${id}`, {
                         headers: {Authorization: `Bearer ${token}`}
@@ -80,7 +81,7 @@ const SignIn = () => {
                 <div className="form-container-sign-in">
                     <h2>Đăng nhập</h2>
                     <div style={{width:'100%', textAlign:"center", minHeight:"25px"}}>
-                    <span className="text-error" style={{height:"20px",color:"red",fontSize:"13px"}}>{error}</span>
+                        <span className="text-error" style={{height:"20px",color:"red",fontSize:"13px"}}>{error}</span>
                     </div>
                     <form
                         onSubmit={handleSubmit} style={{}}
