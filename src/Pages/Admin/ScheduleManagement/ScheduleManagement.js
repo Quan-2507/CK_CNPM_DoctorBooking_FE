@@ -18,7 +18,7 @@ import {Option} from "antd/es/mentions";
 import {  getListAccountDoctorAction} from "../redux/action/UserAction";
 import { useDispatch, useSelector } from "react-redux";
 import {ArrowLeftOutlined} from "@ant-design/icons";
-
+import Topbar from "../../../Home/Topbar";
 const { Title } = Typography;
 
 const SheduleManagement = () => {
@@ -85,6 +85,8 @@ const SheduleManagement = () => {
 
 
     return (
+        <>
+            <Topbar />
         <Row justify="center" style={{ marginTop: 40 }}>
             <Col xs={22} sm={20} md={16} lg={12}>
                 <Card
@@ -195,6 +197,7 @@ const SheduleManagement = () => {
                 </Card>
             </Col>
         </Row>
+            </>
     );
 };
 

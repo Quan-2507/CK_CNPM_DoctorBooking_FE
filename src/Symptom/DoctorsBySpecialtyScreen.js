@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
@@ -7,7 +7,37 @@ import Topbar from "../Home/Topbar";
 const DoctorsBySpecialtyScreen = () => {
     const { state } = useLocation();
     const navigate = useNavigate();
-    const { doctorsBySpecialty, diseaseResults } = state || {};
+    const { doctorsBySpecialty } = state || {};
+    const [detailedDoctorsBySpecialty, setDetailedDoctorsBySpecialty] = useState([]);
+
+    useEffect(() => {
+        const fetchDoctorDetails = async () => {
+            try {
+                const updatedGroups = await Promise.all(
+                    doctorsBySpecialty.map(async (group) => {
+                        const doctorDetails = await Promise.all(
+                            group.doctors.map(async (doctor) => {
+                                const res = await fetch(`http://localhost:8080/api/doctors/${doctor.id}`);
+                                const data = await res.json();
+                                return data; // Trả về dữ liệu chi tiết bác sĩ
+                            })
+                        );
+                        return {
+                            specialty: group.specialty,
+                            doctors: doctorDetails, // Danh sách bác sĩ đã có đủ thông tin chi tiết
+                        };
+                    })
+                );
+                setDetailedDoctorsBySpecialty(updatedGroups);
+            } catch (error) {
+                console.error("Error fetching detailed doctors:", error);
+            }
+        };
+
+        if (doctorsBySpecialty && doctorsBySpecialty.length > 0) {
+            fetchDoctorDetails();
+        }
+    }, [doctorsBySpecialty]);
 
     if (!doctorsBySpecialty || doctorsBySpecialty.length === 0) return <p>Không tìm thấy bác sĩ nào.</p>;
 
@@ -19,9 +49,9 @@ const DoctorsBySpecialtyScreen = () => {
                 <div className="container">
                     <div className="text-center mx-auto mb-5" style={{ maxWidth: 600 }}>
                         <h1>Kết quả dự đoán</h1>
-                        {/*<p>Bệnh có thể mắc phải: {diseaseResults?.join(', ')}</p>*/}
                     </div>
-                    {doctorsBySpecialty.map((group, idx) => (
+
+                    {detailedDoctorsBySpecialty.map((group, idx) => (
                         <div key={idx}>
                             <h3 className="mb-4">Chuyên khoa: {group.specialty}</h3>
                             <div className="row g-4">
@@ -44,7 +74,7 @@ const DoctorsBySpecialtyScreen = () => {
                                             </div>
                                             <div className="team-text bg-light text-center p-4">
                                                 <h5>{doctor.name}</h5>
-                                                <p className="text-primary">Chuyên khoa: {doctor.department?.nameVi || 'Không rõ'}</p>
+                                                <p className="text-primary">Chuyên khoa: {doctor.departmentNameVi || 'Không rõ'}</p>
                                                 <span className="text-black">
                                                     {doctor.degree} - {doctor.experienceYears} năm kinh nghiệm
                                                 </span>

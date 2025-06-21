@@ -8,7 +8,7 @@ import {
     Card,
     Typography,
     Row,
-    Col,
+    Col
 } from "antd";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
