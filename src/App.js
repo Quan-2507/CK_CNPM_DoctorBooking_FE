@@ -35,6 +35,8 @@ import AddDepartment from "./Pages/Admin/DepartmentManagement/AddDepartment";
 import AddSymptom from "./Pages/Admin/SymptomManagement/AddSymptom";
 import EditDepartment from "./Pages/Admin/DepartmentManagement/EditDepartment";
 import EditSymptom from "./Pages/Admin/SymptomManagement/EditSymptom";
+
+import AppointmentManagement from "./Pages/Admin/AppointmentManagement/AppointmentManagement";
 export const history = createBrowserHistory();
 function App() {
     return (
@@ -82,7 +84,7 @@ function App() {
                     {/*<Route path="/scheduleManagement" element={<ScheduleManagement/>}/>*/}
 
 
-                    {/*<Route path="/appointmentManagement" element={<AppointmentManagement/>}/>*/}
+                    <Route path="/appointmentManagement" element={<AppointmentManagement/>}/>
 
 
                 </Routes>

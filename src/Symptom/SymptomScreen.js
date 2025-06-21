@@ -1,30 +1,26 @@
-import React, {useEffect} from "react";
-import {useNavigate} from "react-router-dom";
+import React, { useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from './Symptom.module.css';
-import {useState} from 'react';
 import axios from "axios";
 import Fuse from 'fuse.js';
-import  API_BASE_URL  from '../config/api';
+import API_BASE_URL from '../config/api';
 import Topbar from "../Home/Topbar";
 import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
-import BackToTop from "../Home/BackToTop"; // Điều chỉnh đường dẫn tùy theo vị trí file
+import BackToTop from "../Home/BackToTop";
+
 const SymptomScreen = () => {
-    // const navigate = useNavigate();
-    // const symptoms = [{name: 'Sốt', department: 'khoa nội'}, {name: 'ho', department: 'khoa ngoại'}, {
-    //     name: 'Sổ mũi',
-    //     department: 'khoa ngoại'
-    // }, {name: 'Đau đầu', department: 'khoa ngoại'}, {name: 'Mệt mỏi', department: 'khoa ngoại'}];
-    // const symptoms =[];
     const [symptoms, setSymptoms] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [selectedDepartment, setSelectedDepartment] = useState(null);
+    const [selectedSymptoms, setSelectedSymptoms] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get(`${API_BASE_URL}/symptoms`)
             .then(response => {
-                console.log('Dữ liệu nhận về:', response.data);
                 setSymptoms(response.data);
                 setLoading(false);
             })
@@ -33,52 +29,29 @@ const SymptomScreen = () => {
                 setLoading(false);
             });
     }, []);
-    const [selectedSymptoms, setSelectedSymptoms] = useState([]);
 
     const handleSelectSymptom = (symptom) => {
-        // Kiểm tra xem triệu chứng đã được chọn chưa
-        const isAlreadySelected = selectedSymptoms.some(
-            (selected) => selected.nameVi === symptom.nameVi
-        );
-
-        if (!isAlreadySelected) {
-            // Nếu chưa tồn tại, thêm vào danh sách
+        if (!selectedSymptoms.some((selected) => selected.nameVi === symptom.nameVi)) {
             setSelectedSymptoms([...selectedSymptoms, symptom]);
         }
     };
+
     const handleRemoveSymptom = (symptom) => {
         setSelectedSymptoms(selectedSymptoms.filter((item) => item !== symptom));
     };
-    // State để lưu giá trị của input
-    const [searchTerm, setSearchTerm] = useState('');
 
-    // Hàm xử lý khi người dùng nhập vào input
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
     };
 
-    // Lọc danh sách triệu chứng dựa trên giá trị tìm kiếm
     const fuse = new Fuse(symptoms, {
-        keys: ['nameVi'], // Tìm kiếm trên field 'name'
-        threshold: 0.3, // Độ chính xác (0: chính xác tuyệt đối, 1: rất mờ)
+        keys: ['nameVi'],
+        threshold: 0.3,
     });
 
     const filteredSymptoms = searchTerm
         ? fuse.search(searchTerm).map(result => result.item)
         : symptoms;
-    // const handleContinue = () => {
-    //     if (selectedSymptoms.length === 0) {
-    //         alert('Vui lòng chọn ít nhất một triệu chứng trước khi tiếp tục!');
-    //         return;
-    //     }
-    //
-    //     // In danh sách triệu chứng đã chọn ra console (có thể thay bằng gọi API)
-    //     console.log('Danh sách triệu chứng đã chọn:', selectedSymptoms);
-    //
-    //
-    // };
-
-    const navigate = useNavigate();
 
     const handleContinue = async () => {
         if (selectedSymptoms.length === 0) {
@@ -87,28 +60,17 @@ const SymptomScreen = () => {
         }
 
         try {
-            const specialtiesSet = new Set();
-            const diseaseResults = [];
+            const symptomsToSend = selectedSymptoms.map(symptom => symptom.nameEn);
 
-            for (const symptom of selectedSymptoms) {
-                const res = await axios.post("http://localhost:8000/predict", {
-                    symptoms: [symptom.nameEn],
-                });
+            const res = await axios.post("http://localhost:8000/predict", {
+                symptoms: symptomsToSend,
+            });
 
-                const { predicted_disease, predicted_specialty } = res.data;
-                specialtiesSet.add(predicted_specialty);
+            const { predicted_disease, predicted_specialty } = res.data;
 
-                diseaseResults.push({
-                    symptom: symptom.nameVi,
-                    disease: predicted_disease,
-                    specialty: predicted_specialty,
-                });
-            }
-
-            const specialties = Array.from(specialtiesSet);
             const doctorsBySpecialty = [];
 
-            for (const specialty of specialties) {
+            for (const specialty of predicted_specialty) {
                 const response = await axios.get(`${API_BASE_URL}/doctors/department/name/${specialty}`);
                 doctorsBySpecialty.push({
                     specialty,
@@ -119,8 +81,7 @@ const SymptomScreen = () => {
             navigate('/doctors-by-specialty', {
                 state: {
                     doctorsBySpecialty,
-                    diseaseResults,
-                    doctorIds: doctorsBySpecialty.flatMap(group => group.doctors.map(doc => doc.id))
+                    diseaseResults: predicted_disease,
                 },
             });
 
@@ -130,10 +91,9 @@ const SymptomScreen = () => {
         }
     };
 
-
-
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error.message}</div>;
+
     return (
         <>
             <Topbar />
@@ -156,44 +116,24 @@ const SymptomScreen = () => {
                 </div>
             </div>
             <div className={styles.container}>
-                {/* Cột bên trái */}
                 <div className={styles['column-left']}>
                     <div className={styles['symptom-list']}>
-                        {searchTerm === '' ? (
-                            symptoms.length > 0 ? (
-                                symptoms.map((symptom, index) => (
-                                    <div
-                                        key={index}
-                                        className={`${styles['symptom-item']} ${
-                                            selectedSymptoms.some((s) => s.nameVi === symptom.nameVi) ? styles.selected : ''
-                                        }`}
-                                        onClick={() => handleSelectSymptom(symptom)}
-                                    >
-                                        <h2 className={styles['symptom-name']}>{symptom.nameVi}</h2>
-                                    </div>
-                                ))
-                            ) : (
-                                <p className={styles['no-data']}>Không có dữ liệu</p>
-                            )
+                        {filteredSymptoms.length > 0 ? (
+                            filteredSymptoms.map((symptom, index) => (
+                                <div
+                                    key={index}
+                                    className={`${styles['symptom-item']} ${selectedSymptoms.some((s) => s.nameVi === symptom.nameVi) ? styles.selected : ''}`}
+                                    onClick={() => handleSelectSymptom(symptom)}
+                                >
+                                    <h2 className={styles['symptom-name']}>{symptom.nameVi}</h2>
+                                </div>
+                            ))
                         ) : (
-                            filteredSymptoms.length > 0 ? (
-                                filteredSymptoms.map((symptom, index) => (
-                                    <div
-                                        key={index}
-                                        className={styles['symptom-item']}
-                                        onClick={() => handleSelectSymptom(symptom)}
-                                    >
-                                        <h2 className={styles['symptom-name']}>{symptom.nameVi}</h2>
-                                    </div>
-                                ))
-                            ) : (
-                                <p className={styles['no-data']}>Không tìm thấy triệu chứng</p>
-                            )
+                            <p className={styles['no-data']}>Không tìm thấy triệu chứng</p>
                         )}
                     </div>
                 </div>
 
-                {/* Cột bên phải */}
                 <div className={styles['column-right']}>
                     <div className={styles['symptom-list']}>
                         {selectedSymptoms.length > 0 ? (
@@ -210,7 +150,6 @@ const SymptomScreen = () => {
                             <p className={styles['no-data']}>Chưa có triệu chứng nào được chọn</p>
                         )}
                     </div>
-
                 </div>
             </div>
             <div className={styles['button-container']}>
