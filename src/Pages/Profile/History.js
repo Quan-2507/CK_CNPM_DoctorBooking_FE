@@ -39,14 +39,14 @@ function History() {
                                     <thead className="table-thead">
                                     <tr>
                                         <th className="table-th">STT</th>
-                                        <th className="table-th">Ngày đặt lịch</th>
+                                        <th className="table-th">Ngày đặt</th>
                                         <th className="table-th">Thời gian đặt</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     {appointments.map((appointment, index) => (
                                         <tr key={index} className="table-tr">
-                                            <td className="table-td">{index+1}</td>
+                                            <td className="table-td">{appointment.appointmentNumber}</td>
                                             <td className="table-td">{appointment.appointmentDate}</td>
                                             <td className="table-td">{appointment.appointmentTime}</td>
                                         </tr>

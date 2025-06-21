@@ -15,6 +15,7 @@ import { useFormik } from "formik";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import API_BASE_URL from "../../../config/api";
+import {ArrowLeftOutlined} from "@ant-design/icons";
 
 const { Title } = Typography;
 
@@ -108,17 +109,28 @@ const EditDoctor = () => {
         <Row justify="center" style={{ marginTop: 40 }}>
             <Col xs={22} sm={20} md={16} lg={12}>
                 <Card
-                    title={<Title level={4}>Update Doctor: {formik.values.name}</Title>}
-                    variant="outlined" // Fix warning: replace "bordered"
-                    style={{
-                        boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-                        borderRadius: "12px",
-                    }}
-                >
-                    <Form layout="vertical" onFinish={formik.handleSubmit}>
-                        <Form.Item label="Full Name" required>
-                            <Input
-                                name="name"
+                    title={
+                        <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+                            <Button
+                                type="text"
+                                icon={<ArrowLeftOutlined/>}
+                                onClick={() => navigate(-1)} // Quay lại trang trước
+                                style={{fontSize: '18px', padding: 0}}
+                            />
+                            <Title level={4}>Update Doctor: {formik.values.name}</Title>
+                        </div>
+
+                }
+                variant="outlined" // Fix warning: replace "bordered"
+                style={{
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                    borderRadius: "12px",
+                }}
+            >
+                <Form layout="vertical" onFinish={formik.handleSubmit}>
+                    <Form.Item label="Full Name" required>
+                        <Input
+                            name="name"
                                 value={formik.values.name}
                                 onChange={formik.handleChange}
                             />
