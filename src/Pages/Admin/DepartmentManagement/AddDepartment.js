@@ -41,7 +41,7 @@ const AddDepartment = () => {
                     message: "Success",
                     description: "Schedule added successfully!",
                 });
-                navigate("/doctorManagement");
+                navigate("/departmentManagement");
             } catch (error) {
                 notification.error({
                     message: "Add Failed",
