@@ -1,4 +1,3 @@
-// components/About.jsx
 import React from 'react';
 
 const About = () => (
@@ -12,16 +11,16 @@ const About = () => (
                     </div>
                 </div>
                 <div className="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                    <p className="d-inline-block border rounded-pill py-1 px-4">About Us</p>
-                    <h1 className="mb-4">Why You Should Trust Us? Get Know About Us!</h1>
-                    <p>Tempor erat elitr rebum at clita...</p>
-                    <p className="mb-4">Stet no et lorem dolor et diam...</p>
+                    <p className="d-inline-block border rounded-pill py-1 px-4">Về Chúng Tôi</p>
+                    <h1 className="mb-4">Tại sao bạn nên tin tưởng chúng tôi? Hãy tìm hiểu về chúng tôi!</h1>
+                    <p>Chúng tôi cam kết cung cấp dịch vụ y tế chất lượng cao, tận tâm với từng bệnh nhân, với đội ngũ bác sĩ giàu kinh nghiệm và cơ sở vật chất hiện đại.</p>
+                    <p className="mb-4">Sứ mệnh của chúng tôi là mang lại sức khỏe và sự an tâm cho cộng đồng thông qua các dịch vụ chăm sóc sức khỏe chuyên nghiệp và tận tình.</p>
                     <ul className="list-unstyled">
-                        <li><i className="far fa-check-circle text-primary me-3"></i>Quality health care</li>
-                        <li><i className="far fa-check-circle text-primary me-3"></i>Only Qualified Doctors</li>
-                        <li><i className="far fa-check-circle text-primary me-3"></i>Medical Research Professionals</li>
+                        <li><i className="far fa-check-circle text-primary me-3"></i>Dịch vụ y tế chất lượng</li>
+                        <li><i className="far fa-check-circle text-primary me-3"></i>Đội ngũ bác sĩ đạt chuẩn</li>
+                        <li><i className="far fa-check-circle text-primary me-3"></i>Chuyên gia nghiên cứu y khoa</li>
                     </ul>
-                    <a className="btn btn-primary rounded-pill py-3 px-5 mt-3" href="#">Read More</a>
+                    <a className="btn btn-primary rounded-pill py-3 px-5 mt-3" href="#">Xem Thêm</a>
                 </div>
             </div>
         </div>

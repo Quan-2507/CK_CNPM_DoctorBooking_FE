@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom"; // ✅ thêm useNavigate
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import './BookAppointment.css';
 
 const AppointmentContainer = () => {
     const { id: docId } = useParams();
-    const navigate = useNavigate(); // ✅ Hook để điều hướng
-    const daysOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+    const navigate = useNavigate();
+    const daysOfWeek = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
 
     const [docInfo, setDocInfo] = useState(null);
     const [schedules, setSchedules] = useState({});
@@ -19,7 +19,7 @@ const AppointmentContainer = () => {
             const response = await axios.get(`http://localhost:8080/api/doctors/${docId}`);
             setDocInfo(response.data);
         } catch (error) {
-            console.error("Error fetching doctor info:", error);
+            console.error("Lỗi khi lấy thông tin bác sĩ:", error);
         }
     };
 
@@ -43,7 +43,7 @@ const AppointmentContainer = () => {
 
             setSchedules(sorted);
         } catch (error) {
-            console.error("Error fetching doctor schedules:", error);
+            console.error("Lỗi khi lấy lịch khám:", error);
         }
     };
 
@@ -55,7 +55,7 @@ const AppointmentContainer = () => {
         const appointmentTime = vietnamTime.toISOString();
 
         if (!userId || selectedSlotId == null) {
-            alert("Please select a time slot.");
+            alert("Vui lòng chọn khung giờ khám.");
             return;
         }
 
@@ -67,16 +67,16 @@ const AppointmentContainer = () => {
         };
 
         try {
-            const response = await axios.post('http://localhost:8080/api/bookings', requestBody, {
+            await axios.post('http://localhost:8080/api/bookings', requestBody, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             });
-            alert("Appointment booked successfully!");
-            navigate("/"); // ✅ Chuyển về trang chủ sau khi đặt lịch
+            alert("Đặt lịch khám thành công!");
+            navigate("/");
         } catch (error) {
-            console.error("Booking failed:", error);
-            alert("Failed to book appointment.");
+            console.error("Lỗi khi đặt lịch:", error);
+            alert("Đặt lịch khám thất bại.");
         }
     };
 
@@ -100,16 +100,18 @@ const AppointmentContainer = () => {
                     <p className='doctor-name'>{docInfo.name}</p>
                     <div className='doctor-degree'>
                         <p>{docInfo.degree} - {docInfo.departmentName}</p>
-                        <button className='doctor-exp'>{docInfo.experienceYears} years</button>
+                        <button className='doctor-exp'>{docInfo.experienceYears} năm kinh nghiệm</button>
                     </div>
                     <div className='doctor-description'>
-                        <p className='doctor-description-content'>Bác sĩ nhiều kinh nghiệm trong chuyên khoa {docInfo.departmentName}.</p>
+                        <p className='doctor-description-content'>
+                            Bác sĩ giàu kinh nghiệm trong chuyên khoa {docInfo.departmentName}.
+                        </p>
                     </div>
                 </div>
             </div>
 
             <div className='booking'>
-                <p>Booking slots</p>
+                <p>Chọn lịch khám</p>
                 <div className='book-day'>
                     {dateKeys.map((date, index) => {
                         const dateObj = new Date(date);
@@ -131,6 +133,7 @@ const AppointmentContainer = () => {
                         );
                     })}
                 </div>
+
                 <div className='book-time'>
                     {dateKeys.length > 0 && schedules[dateKeys[slotIndex]]?.map((slot, index) => {
                         const timeRange = `${slot.startTime.slice(0, 5)} - ${slot.endTime.slice(0, 5)}`;
@@ -148,8 +151,9 @@ const AppointmentContainer = () => {
                         );
                     })}
                 </div>
+
                 <button className='book-button' onClick={handleBooking}>
-                    Book an appointment
+                    Đặt lịch khám
                 </button>
             </div>
         </div>

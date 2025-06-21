@@ -9,6 +9,27 @@ const DoctorsBySpecialtyScreen = () => {
     const navigate = useNavigate();
     const { doctorsBySpecialty } = state || {};
     const [detailedDoctorsBySpecialty, setDetailedDoctorsBySpecialty] = useState([]);
+    const specialtyMapping = {
+        "Allergy": "Dị ứng",
+        "Orthopedics": "Chỉnh hình",
+        "Dentistry": "Nha khoa",
+        "Neurology": "Thần kinh",
+        "Gastroenterology": "Tiêu hóa",
+        "Urology": "Tiết niệu",
+        "Hepatology": "Gan mật",
+        "Dermatology": "Da liễu",
+        "Psychiatry": "Tâm thần",
+        "Otorhinolaryngology (ENT)": "Tai Mũi Họng",
+        "General Medicine": "Nội tổng quát",
+        "Obstetrics and Gynecology": "Sản phụ khoa",
+        "Pulmonology": "Hô hấp",
+        "Endocrinology": "Nội tiết",
+        "Hematology": "Huyết học",
+        "Nephrology": "Thận - Tiết niệu",
+        "Cardiology": "Tim mạch",
+        "Rheumatology": "Cơ xương khớp",
+        "Ophthalmology": "Mắt",
+    };
 
     useEffect(() => {
         const fetchDoctorDetails = async () => {
@@ -53,7 +74,7 @@ const DoctorsBySpecialtyScreen = () => {
 
                     {detailedDoctorsBySpecialty.map((group, idx) => (
                         <div key={idx}>
-                            <h3 className="mb-4">Chuyên khoa: {group.specialty}</h3>
+                            <h3 className="mb-4">Chuyên khoa: {specialtyMapping[group.specialty] || group.specialty}</h3>
                             <div className="row g-4">
                                 {group.doctors.map((doctor) => (
                                     <div key={doctor.id} className="col-lg-3 col-md-6">
