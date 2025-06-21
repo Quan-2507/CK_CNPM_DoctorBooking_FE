@@ -15,6 +15,7 @@ import Highlighter from "react-highlight-words";
 import { useDispatch, useSelector } from "react-redux";
 import { getListAccountPatientAction } from "../redux/action/UserAction";
 import Sidebar from "../Sidebar/Sidebar";
+import Topbar from "../../../Home/Topbar";
 
 export default function PatientManagement() {
     const dispatch = useDispatch();
@@ -150,6 +151,8 @@ export default function PatientManagement() {
     ];
 
     return (
+        <>
+            <Topbar />
         <section className="container-fluid row g-0">
             <div className="col-md-3">
                 <Sidebar />
@@ -180,5 +183,6 @@ export default function PatientManagement() {
                 </Modal>
             </div>
         </section>
+            </>
     );
 }

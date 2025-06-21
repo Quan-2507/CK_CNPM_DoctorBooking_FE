@@ -25,6 +25,7 @@ import {
 
 import Sidebar from "../Sidebar/Sidebar";
 import {DepartmentReducer} from "../redux/reducer/DepartmentReducer";
+import Topbar from "../../../Home/Topbar";
 
 export default function DepartmentManagement() {
     const dispatch = useDispatch();
@@ -194,6 +195,8 @@ export default function DepartmentManagement() {
     ];
 
     return (
+        <>
+            <Topbar />
         <section className="container-fluid row g-0">
             <div className="col-md-3">
                 <Sidebar />
@@ -243,5 +246,6 @@ export default function DepartmentManagement() {
                 </Modal>
             </div>
         </section>
+            </>
     );
 }

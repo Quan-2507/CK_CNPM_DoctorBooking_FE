@@ -24,6 +24,7 @@ import {
 } from "../redux/action/SymptomAction";
 
 import Sidebar from "../Sidebar/Sidebar";
+import Topbar from "../../../Home/Topbar";
 
 export default function SymptomManagement() {
     const dispatch = useDispatch();
@@ -195,6 +196,8 @@ export default function SymptomManagement() {
     ];
 
     return (
+        <>
+            <Topbar />
         <section className="container-fluid row g-0">
             <div className="col-md-3">
                 <Sidebar />
@@ -244,5 +247,6 @@ export default function SymptomManagement() {
                 </Modal>
             </div>
         </section>
+            </>
     );
 }
