@@ -167,7 +167,7 @@ export default function SymptomManagement() {
             width: "20%",
             render: (_, data) => (
                 <div key={data.id}>
-                    <Link to={`/admin/doctormng/edit/${data.id}`}>
+                    <Link to={`/admin/symptom/edit`} state = {{symptom:data}}>
                         <Button type="link" icon={<EditOutlined />} />
                     </Link>
 
@@ -181,12 +181,7 @@ export default function SymptomManagement() {
                             }
                         }}
                     />
-                    <Button
-                        type="link"
-                        icon={<InfoCircleOutlined />}
-                        onClick={() => showDoctorDetail(data)}
-                        title="Chi tiết"
-                    />
+
                     {/*<Button*/}
                     {/*    type="link"*/}
                     {/*    icon={data.clinic ? <CalendarOutlined /> : <FormOutlined />}*/}
@@ -211,7 +206,7 @@ export default function SymptomManagement() {
                 <div className="mb-3 d-flex flex-column align-items-start">
                     <h3 className="text-lg">Quản lý triệu chứng</h3>
                     <Button type="primary" className="mt-2 bg-primary">
-                        <Link to="/admin/doctormng/adddoc" style={{ color: "white", textDecoration: "none" }}>
+                        <Link to="/admin/addSymptom" style={{ color: "white", textDecoration: "none" }}>
                             + Thêm triệu chứng mới
                         </Link>
                     </Button>

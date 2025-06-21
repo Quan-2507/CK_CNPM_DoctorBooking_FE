@@ -21,27 +21,28 @@ import {ArrowLeftOutlined} from "@ant-design/icons";
 
 const {Title} = Typography;
 
-const AddDepartment = () => {
+const AddSymptom = () => {
     const navigate = useNavigate();
 
     const formik = useFormik({
         initialValues: {
             nameVi: "",
             nameEn: "",
+            description:""
         },
         onSubmit: async (values) => {
             try {
                 console.log(values)
-                await axios.post(`${API_BASE_URL}/admin/departments`, values, {
+                await axios.post(`${API_BASE_URL}/admin/symptoms`, values, {
                     headers: {
                         Authorization: "Bearer " + localStorage.getItem("token"),
                     },
                 });
                 notification.success({
                     message: "Success",
-                    description: "Schedule added successfully!",
+                    description: "Symptom added successfully!",
                 });
-                navigate("/doctorManagement");
+                navigate("/symptomManagement");
             } catch (error) {
                 notification.error({
                     message: "Add Failed",
@@ -54,32 +55,38 @@ const AddDepartment = () => {
         <Row justify="center" style={{marginTop: 40}}>
             <Col xs={22} sm={20} md={16} lg={12}>
                 <Card
-                    title={
-                        <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
-                            <Button
-                                type="text"
-                                icon={<ArrowLeftOutlined/>}
-                                onClick={() => navigate(-1)} // Quay lại trang trước
-                                style={{fontSize: '18px', padding: 0}}
-                            />
-                            <Title level={4}>Thêm khoa</Title>
-                        </div>
-                }
+                    title={<div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+                        <Button
+                            type="text"
+                            icon={<ArrowLeftOutlined/>}
+                            onClick={() => navigate(-1)} // Quay lại trang trước
+                            style={{fontSize: '18px', padding: 0}}
+                        />
+                        <Title level={4}> Thêm triệu chứng</Title>
+                    </div>
+                    }
                 bordered
                 style={{boxShadow: "0 4px 12px rgba(0,0,0,0.1)", borderRadius: "12px"}}
             >
                 <Form layout="vertical" onFinish={formik.handleSubmit}>
-                    <Form.Item label="Tên khoa" required>
+                    <Form.Item label="Tên tên triệu chứng" required>
                         <Input
                             name="nameVi"
                             value={formik.values.nameVi}
                             onChange={formik.handleChange}
-                        />
-                    </Form.Item>
-                    <Form.Item label="Tên khoa(Tiếng anh)" required>
+                            />
+                        </Form.Item>
+                        <Form.Item label="Tên triệu chứng(Tiếng anh)" required>
                             <Input
                                 name="nameEn"
                                 value={formik.values.nameEn}
+                                onChange={formik.handleChange}
+                            />
+                        </Form.Item>
+                        <Form.Item label="Mô tả" required>
+                            <Input
+                                name="description"
+                                value={formik.values.description}
                                 onChange={formik.handleChange}
                             />
                         </Form.Item>
@@ -90,7 +97,7 @@ const AddDepartment = () => {
                                 className="bg-primary"
                                 style={{width: "100%", fontWeight: "bold"}}
                             >
-                                Thêm khoa
+                                Thêm triệu chứng
                             </Button>
                         </Form.Item>
                     </Form>
@@ -100,4 +107,4 @@ const AddDepartment = () => {
     );
 };
 
-export default AddDepartment;
+export default AddSymptom;

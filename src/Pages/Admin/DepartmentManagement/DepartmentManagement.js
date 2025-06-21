@@ -161,7 +161,7 @@ export default function DepartmentManagement() {
             width: "20%",
             render: (_, data) => (
                 <div key={data.id}>
-                    <Link to={`/admin/doctormng/edit/${data.id}`}>
+                    <Link to={`/admin/department/edit`} state={{department:data}}>
                         <Button type="link" icon={<EditOutlined />} />
                     </Link>
 
@@ -175,12 +175,12 @@ export default function DepartmentManagement() {
                             }
                         }}
                     />
-                    <Button
-                        type="link"
-                        icon={<InfoCircleOutlined />}
-                        onClick={() => showDoctorDetail(data)}
-                        title="Chi tiết"
-                    />
+                    {/*<Button*/}
+                    {/*    type="link"*/}
+                    {/*    icon={<InfoCircleOutlined />}*/}
+                    {/*    onClick={() => showDoctorDetail(data)}*/}
+                    {/*    title="Chi tiết"*/}
+                    {/*/>*/}
                     {/*<Button*/}
                     {/*    type="link"*/}
                     {/*    icon={data.clinic ? <CalendarOutlined /> : <FormOutlined />}*/}
