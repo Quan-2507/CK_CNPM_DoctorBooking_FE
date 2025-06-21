@@ -17,8 +17,8 @@ import API_BASE_URL from "../../../config/api";
 import {Option} from "antd/es/mentions";
 import {  getListAccountDoctorAction} from "../redux/action/UserAction";
 import { useDispatch, useSelector } from "react-redux";
+import {ArrowLeftOutlined} from "@ant-design/icons";
 import Topbar from "../../../Home/Topbar";
-
 const { Title } = Typography;
 
 const SheduleManagement = () => {
@@ -90,16 +90,25 @@ const SheduleManagement = () => {
         <Row justify="center" style={{ marginTop: 40 }}>
             <Col xs={22} sm={20} md={16} lg={12}>
                 <Card
-                    title={<Title level={4}>Thêm lịch khám</Title>}
-                    bordered
-                    style={{ boxShadow: "0 4px 12px rgba(0,0,0,0.1)", borderRadius: "12px" }}
-                >
-                    <Form layout="vertical" onFinish={formik.handleSubmit}>
-                        <Form.Item label="Bác sĩ" required>
-                            <Select
-                                placeholder="Chọn bác sĩ"
-                                value={formik.values.doctorId}
-                                onChange={(value) => formik.setFieldValue("doctorId", value)}
+                    title={<div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+                        <Button
+                            type="text"
+                            icon={<ArrowLeftOutlined/>}
+                            onClick={() => navigate(-1)} // Quay lại trang trước
+                            style={{fontSize: '18px', padding: 0}}
+                        />
+                        <Title level={4}>Thêm lịch khám</Title>
+                    </div>
+                    }
+                bordered
+                style={{boxShadow: "0 4px 12px rgba(0,0,0,0.1)", borderRadius: "12px"}}
+            >
+                <Form layout="vertical" onFinish={formik.handleSubmit}>
+                    <Form.Item label="Bác sĩ" required>
+                        <Select
+                            placeholder="Chọn bác sĩ"
+                            value={formik.values.doctorId}
+                            onChange={(value) => formik.setFieldValue("doctorId", value)}
                                 showSearch
                                 optionFilterProp="children"
                                 filterOption={(input, option) =>
