@@ -93,14 +93,14 @@ const EditSymptom = () => {
                 }}
             >
                 <Form layout="vertical" onFinish={formik.handleSubmit}>
-                    <Form.Item label="Tên khoa" required>
+                    <Form.Item label="Tên triệu chứng" required>
                     <Input
                                 name="nameVi"
                                 value={formik.values.nameVi}
                                 onChange={formik.handleChange}
                             />
                         </Form.Item>
-                        <Form.Item label="Tên khoa(Tiếng Anh)" required>
+                        <Form.Item label="Tên triệu chứng(Tiếng Anh)" required>
                             <Input
                                 name="nameEn"
                                 value={formik.values.nameEn}

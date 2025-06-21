@@ -364,7 +364,7 @@ function Profile() {
                                             checked={gender === 'FEMALE'}
                                             onChange={(e) => setGender(e.target.value)}
                                         />
-                                        Nũ
+                                        Nữ
                                     </label><br/>
 
                                     <label>
