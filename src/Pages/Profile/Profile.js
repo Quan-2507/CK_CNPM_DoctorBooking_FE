@@ -395,7 +395,7 @@ function Profile() {
                                         type="submit"
                                         className="btn form-btn update-button"
                                     >
-                                        update
+                                        Cập nhật
                                     </button>
                                 </div>
                             </form>
@@ -440,7 +440,7 @@ function Profile() {
                                         type="submit"
                                         className="btn form-btn update-button"
                                     >
-                                        Change password
+                                        Đổi mật khẩu
                                     </button>
                                 </div>
                             </form>
