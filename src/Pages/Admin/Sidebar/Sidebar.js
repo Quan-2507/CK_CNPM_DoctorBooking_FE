@@ -107,7 +107,7 @@ const Sidebar = () => {
                         <li>
                             <Link to="/scheduleManagement" className="text-nowrap text-white text-decoration-none">
                                 <FontAwesomeIcon icon={faCalendarDay}/>
-                                <span>Quản lý thời khóa biểu</span>
+                                <span>Thêm lịch khám</span>
                             </Link>
                         </li>
                         <li>
