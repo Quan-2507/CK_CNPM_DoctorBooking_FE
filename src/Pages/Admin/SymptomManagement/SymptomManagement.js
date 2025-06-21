@@ -20,7 +20,8 @@ import Highlighter from "react-highlight-words";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
-  getListSymptom
+    deleteSymptom,
+    getListSymptom
 } from "../redux/action/SymptomAction";
 
 import Sidebar from "../Sidebar/Sidebar";
@@ -176,8 +177,8 @@ export default function SymptomManagement() {
                         danger
                         icon={<DeleteOutlined />}
                         onClick={() => {
-                            if (window.confirm(`Bạn chắc chắn muốn xóa ${data.name}?`)) {
-                                // dispatch(deleteAccountAction(data.id));
+                            if (window.confirm(`Bạn chắc chắn muốn xóa ${data.nameVi}?`)) {
+                                dispatch(deleteSymptom(data.id));
                             }
                         }}
                     />
