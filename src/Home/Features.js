@@ -1,11 +1,10 @@
-// components/Features.jsx
 import React from 'react';
 
 const features = [
-    { icon: 'fa-user-md', title: 'Doctors', label: 'Experience' },
-    { icon: 'fa-check', title: 'Services', label: 'Quality' },
-    { icon: 'fa-comment-medical', title: 'Consultation', label: 'Positive' },
-    { icon: 'fa-headphones', title: 'Support', label: '24 Hours' }
+    { icon: 'fa-user-md', title: 'Bác sĩ', label: 'Kinh nghiệm' },
+    { icon: 'fa-check', title: 'Dịch vụ', label: 'Chất lượng' },
+    { icon: 'fa-comment-medical', title: 'Tư vấn', label: 'Tích cực' },
+    { icon: 'fa-headphones', title: 'Hỗ trợ', label: '24/7' }
 ];
 
 const Features = () => (
@@ -14,9 +13,9 @@ const Features = () => (
             <div className="row g-0 mx-lg-0">
                 <div className="col-lg-6 feature-text py-5 wow fadeIn" data-wow-delay="0.1s">
                     <div className="p-lg-5 ps-lg-0">
-                        <p className="d-inline-block border rounded-pill text-light py-1 px-4">Features</p>
-                        <h1 className="text-white mb-4">Why Choose Us</h1>
-                        <p className="text-white mb-4 pb-2">Tempor erat elitr rebum at clita...</p>
+                        <p className="d-inline-block border rounded-pill text-light py-1 px-4">Đặc Điểm Nổi Bật</p>
+                        <h1 className="text-white mb-4">Tại Sao Chọn Chúng Tôi</h1>
+                        <p className="text-white mb-4 pb-2">Chúng tôi cung cấp dịch vụ y tế chất lượng với đội ngũ bác sĩ giàu kinh nghiệm, luôn sẵn sàng hỗ trợ và tư vấn tận tâm cho bệnh nhân.</p>
                         <div className="row g-4">
                             {features.map((f, i) => (
                                 <div key={i} className="col-6">
@@ -36,7 +35,7 @@ const Features = () => (
                 </div>
                 <div className="col-lg-6 pe-lg-0 wow fadeIn" data-wow-delay="0.5s" style={{ minHeight: '400px' }}>
                     <div className="position-relative h-100">
-                        <img className="position-absolute img-fluid w-100 h-100" src="/assets/img/feature.jpg" style={{ objectFit: 'cover' }} alt="Feature" />
+                        <img className="position-absolute img-fluid w-100 h-100" src="/assets/img/feature.jpg" style={{ objectFit: 'cover' }} alt="Tính năng" />
                     </div>
                 </div>
             </div>
